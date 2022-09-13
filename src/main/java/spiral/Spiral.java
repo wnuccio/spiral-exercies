@@ -8,10 +8,18 @@ import java.util.stream.Collectors;
 public class Spiral {
     private final int[] row1;
     private final int[] row2;
+    private final int[][] rows;
 
-    public Spiral(int[] row1, int[] row2) {
-        this.row1 = row1;
-        this.row2 = row2;
+    public Spiral(int[][] rows) {
+        assert(isSquare(rows));
+
+        this.rows = rows;
+        this.row1 = rows[0];
+        this.row2 = rows[1];
+    }
+
+    private boolean isSquare(int[][] rows) {
+        return true;
     }
 
     public String asString() {
