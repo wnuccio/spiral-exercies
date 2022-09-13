@@ -1,5 +1,10 @@
 package spiral;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+
 public class Spiral {
     private final int[] row1;
     private final int[] row2;
@@ -10,6 +15,17 @@ public class Spiral {
     }
 
     public String asString() {
-        return "1 2 3 4";
+        List<Integer> l = new ArrayList<>();
+        for (int i=0; i < row1.length; i++) {
+            l.add(row1[i]);
+        }
+        for (int i=row2.length -1; i >= 0; i--) {
+            l.add(row2[i]);
+        }
+
+        String result = l.stream()
+                .map(String::valueOf)
+                .collect(Collectors.joining(" "));
+        return result;
     }
 }
