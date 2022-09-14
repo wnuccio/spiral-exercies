@@ -118,6 +118,53 @@ public class Matrix2 {
             moveUp();
 
             moveRight();
+        } else if (values.length == 6) {
+            moveRight();
+            moveRight();
+            moveRight();
+            moveRight();
+            moveRight();
+            moveRight();
+
+            moveDown();
+            moveDown();
+            moveDown();
+            moveDown();
+            moveDown();
+
+            moveLeft();
+            moveLeft();
+            moveLeft();
+            moveLeft();
+            moveLeft();
+
+            moveUp();
+            moveUp();
+            moveUp();
+            moveUp();
+
+            moveRight();
+            moveRight();
+            moveRight();
+            moveRight();
+
+            moveDown();
+            moveDown();
+            moveDown();
+
+            moveLeft();
+            moveLeft();
+            moveLeft();
+
+            moveUp();
+            moveUp();
+
+            moveRight();
+            moveRight();
+
+            moveDown();
+
+            moveLeft();
         }
         return s.toString();
     }
