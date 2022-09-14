@@ -6,6 +6,8 @@ public class Matrix2 {
     private final int[][] values;
 
     private int i, j;
+    int steps;
+    Direction direction;
     private StringBuilder s;
 
     public Matrix2(int[][] values) {
@@ -33,9 +35,6 @@ public class Matrix2 {
         s = new StringBuilder();
         i = 0;
         j = -1;
-        int steps;
-        Direction direction;
-
         steps = values.length;
 
         direction = RIGHT;
