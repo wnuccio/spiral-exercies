@@ -37,6 +37,21 @@ public class Matrix2 {
         Direction direction;
 
         steps = values.length;
+
+        direction = RIGHT;
+        move(direction, steps);
+
+        steps--;
+        direction = DOWN;
+        move(direction, steps);
+
+        direction = LEFT;
+        move(direction, steps);
+
+        steps--;
+        direction = UP;
+        move(direction, steps);
+
         direction = RIGHT;
         move(direction, steps);
 
@@ -52,17 +67,6 @@ public class Matrix2 {
         move(direction, steps);
 
         direction = RIGHT;
-        move(direction, steps);
-
-        steps--;
-        direction = DOWN;
-        move(direction, steps);
-
-        direction = LEFT;
-        move(direction, steps);
-
-        steps--;
-        direction = UP;
         move(direction, steps);
 
 
@@ -77,9 +81,8 @@ public class Matrix2 {
         } else if (values.length == 4) {
 
         } else if (values.length == 5) {
-            move(RIGHT, 1);
+
         } else if (values.length == 6) {
-            move(RIGHT, 2);
             move(DOWN, 1);
             move(LEFT, 1);
         }
