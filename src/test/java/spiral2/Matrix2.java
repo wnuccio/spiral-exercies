@@ -9,6 +9,21 @@ public class Matrix2 {
 
     public String toSpiral() {
         if (values.length == 0) return "";
-        return "1";
+        if (values.length == 1) return "1";
+
+        StringBuilder s = new StringBuilder();
+        int i=0, j=0;
+        s.append(values[i][j]);
+
+        j++;
+        s.append(" " + values[i][j]);
+
+        i++;
+        s.append(" " + values[i][j]);
+
+        j--;
+        s.append(" " + values[i][j]);
+
+        return s.toString();
     }
 }
