@@ -12,7 +12,8 @@ public class Matrix2 {
 
     private void moveRight() {
         j++;
-        s.append(" " + values[i][j]);
+        if (i==0 && j==0) s.append(values[i][j]);
+        else s.append(" " + values[i][j]);
     }
 
     private void moveDown() {
@@ -36,11 +37,10 @@ public class Matrix2 {
 
         s = new StringBuilder();
         i = 0;
-        j = 0;
+        j = -1;
 
         if (values.length == 2) {
-            s.append(values[i][j]);
-
+            moveRight();
             moveRight();
             moveDown();
             moveLeft();
@@ -48,8 +48,7 @@ public class Matrix2 {
             return s.toString();
         }
 
-        s.append(values[i][j]);
-
+        moveRight();
         moveRight();
         moveRight();
         moveDown();
