@@ -44,20 +44,17 @@ public class Matrix2 {
             moveRight();
             moveDown();
             moveLeft();
-
-            return s.toString();
+        } else { // values.length == 3
+            moveRight();
+            moveRight();
+            moveRight();
+            moveDown();
+            moveDown();
+            moveLeft();
+            moveLeft();
+            moveUp();
+            moveRight();
         }
-
-        moveRight();
-        moveRight();
-        moveRight();
-        moveDown();
-        moveDown();
-        moveLeft();
-        moveLeft();
-        moveUp();
-        moveRight();
-
         return s.toString();
     }
 }
