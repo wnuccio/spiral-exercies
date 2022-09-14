@@ -4,31 +4,33 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static spiral.Spiral.Direction.*;
+import static spiral.ComputeSpiral.Direction.*;
 
-
-public class Spiral {
-    private final int[][] rows;
+class ComputeSpiral {
+    enum Direction {
+        RIGHT, DOWN, LEFT, UP
+    }
 
     private int i, iMin, iMax, j, jMin, jMax;
     private Direction d;
     private boolean end;
     private List<Integer> numbers;
 
-
-    public Spiral(int[][] rows) {
-        this.rows = rows;
+    private void initialize(int[][] rows) {
+        iMin = 0;
+        jMin = 0;
+        iMax = rows.length - 1;
+        jMax = rows.length - 1;
+        i = iMin;
+        j = jMin;
+        d = RIGHT;
+        end = false;
+        numbers = new ArrayList<>();
     }
 
-    enum Direction {
-        RIGHT, DOWN, LEFT, UP
-    }
+    public List<Integer> compute(int[][] rows) {
+        initialize(rows);
 
-    public String asString() {
-
-        initialize();
-
-        boolean end = false;
         while (!end) {
             numbers.add(rows[i][j]);
             moveOn();
@@ -36,7 +38,8 @@ public class Spiral {
         }
 
         numbers.add(rows[i][j]);
-        return joinAsString(numbers);
+        return numbers;
+
     }
 
     private void moveOn() {
@@ -76,16 +79,18 @@ public class Spiral {
                 else iMin++;
         }
     }
+}
 
-    private void initialize() {
-        iMin = 0;
-        jMin = 0;
-        iMax = rows.length - 1;
-        jMax = rows.length - 1;
-        i = iMin;
-        j = jMin;
-        d = RIGHT;
-        numbers = new ArrayList<>();
+public class Spiral {
+    private final int[][] rows;
+
+    public Spiral(int[][] rows) {
+        this.rows = rows;
+    }
+
+    public String asString() {
+        List<Integer> numberSpiral = new ComputeSpiral().compute(rows);
+        return joinAsString(numberSpiral);
     }
 
     private String joinAsString(List<Integer> l) {
