@@ -11,7 +11,6 @@ public class Matrix2 {
 
     private int i, j;
     private int steps;
-    private Direction direction;
 
     private StringBuilder s;
 
@@ -22,10 +21,12 @@ public class Matrix2 {
         initialize();
 
         while(steps > 0) {
-            moveRight();
-            moveDown();
-            moveLeft();
-            moveUp();
+            move(RIGHT, steps);
+            steps--;
+            move(DOWN, steps);
+            move(LEFT, steps);
+            steps--;
+            move(UP, steps);
         }
 
         return s.toString();
@@ -42,28 +43,6 @@ public class Matrix2 {
             if (i == 0 && j == 0) s.append(values[i][j]);
             else s.append(" ").append(values[i][j]);
         }
-    }
-
-    private void moveUp() {
-        steps--;
-        direction = UP;
-        move(direction, steps);
-    }
-
-    private void moveLeft() {
-        direction = LEFT;
-        move(direction, steps);
-    }
-
-    private void moveDown() {
-        steps--;
-        direction = DOWN;
-        move(direction, steps);
-    }
-
-    private void moveRight() {
-        direction = RIGHT;
-        move(direction, steps);
     }
 
     private void initialize() {
