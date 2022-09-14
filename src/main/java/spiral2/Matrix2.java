@@ -27,59 +27,53 @@ public class Matrix2 {
                 case UP: i--; break;
             }
             if (i == 0 && j == 0) s.append(values[i][j]);
-            else s.append(" " + values[i][j]);
+            else s.append(" ").append(values[i][j]);
         }
     }
 
     public String toSpiral() {
         initialize();
 
-        direction = RIGHT;
-        move(direction, steps);
+        moveRight();
+        moveDown();
+        moveLeft();
+        moveUp();
 
-        steps--;
-        direction = DOWN;
-        move(direction, steps);
+        moveRight();
+        moveDown();
+        moveLeft();
+        moveUp();
 
-        direction = LEFT;
-        move(direction, steps);
+        moveRight();
+        moveDown();
+        moveLeft();
+        moveUp();
 
-        steps--;
-        direction = UP;
-        move(direction, steps);
-
-        direction = RIGHT;
-        move(direction, steps);
-
-        steps--;
-        direction = DOWN;
-        move(direction, steps);
-
-        direction = LEFT;
-        move(direction, steps);
-
-        steps--;
-        direction = UP;
-        move(direction, steps);
-
-        direction = RIGHT;
-        move(direction, steps);
-
-        steps--;
-        direction = DOWN;
-        move(direction, steps);
-
-        direction = LEFT;
-        move(direction, steps);
-
-        steps--;
-        direction = UP;
-        move(direction, steps);
-
-        direction = RIGHT;
-        move(direction, steps);
+        moveRight();
 
         return s.toString();
+    }
+
+    private void moveUp() {
+        steps--;
+        direction = UP;
+        move(direction, steps);
+    }
+
+    private void moveLeft() {
+        direction = LEFT;
+        move(direction, steps);
+    }
+
+    private void moveDown() {
+        steps--;
+        direction = DOWN;
+        move(direction, steps);
+    }
+
+    private void moveRight() {
+        direction = RIGHT;
+        move(direction, steps);
     }
 
     private void initialize() {
