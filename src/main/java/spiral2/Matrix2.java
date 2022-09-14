@@ -10,7 +10,6 @@ public class Matrix2 {
     }
 
     private int i, j;
-    private int steps;
 
     private StringBuilder s;
 
@@ -18,20 +17,20 @@ public class Matrix2 {
         this.values = values;
     }
     public String toSpiral() {
-        initialize();
+        int steps = initialize();
 
         while(steps > 0) {
-            move(RIGHT);
-            move(DOWN);
-            move(LEFT);
-            move(UP);
+            steps = move(RIGHT, steps);
+            steps = move(DOWN, steps);
+            steps = move(LEFT, steps);
+            steps = move(UP, steps);
         }
 
         return s.toString();
     }
 
-    private void move(Direction direction) {
-        for (int k=0; k<this.steps; k++) {
+    private int move(Direction direction, int steps) {
+        for (int k=0; k<steps; k++) {
             switch (direction) {
                 case RIGHT: j++; break;
                 case DOWN: i++; break;
@@ -43,17 +42,19 @@ public class Matrix2 {
             s.append(values[i][j]);
         }
 
-        if (direction == RIGHT || direction == LEFT) this.steps--;
+        if (direction == RIGHT || direction == LEFT) steps--;
+        return steps;
     }
 
     private boolean onFirstElement() {
         return i == 0 && j == 0;
     }
 
-    private void initialize() {
+    private int initialize() {
         s = new StringBuilder();
         i = 0;
         j = -1;
-        steps = values.length;
+        int steps = values.length;
+        return steps;
     }
 }
