@@ -69,23 +69,13 @@ public class Matrix2 {
         direction = RIGHT;
         move(direction, steps);
 
+        steps--;
+        direction = DOWN;
+        move(direction, steps);
 
-        if (values.length == 0) {
+        direction = LEFT;
+        move(direction, steps);
 
-        } else if (values.length == 1) {
-
-        } else if (values.length == 2) {
-
-        } else if (values.length == 3) {
-
-        } else if (values.length == 4) {
-
-        } else if (values.length == 5) {
-
-        } else if (values.length == 6) {
-            move(DOWN, 1);
-            move(LEFT, 1);
-        }
         return s.toString();
     }
 }
