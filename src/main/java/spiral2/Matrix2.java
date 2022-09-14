@@ -32,10 +32,7 @@ public class Matrix2 {
     }
 
     public String toSpiral() {
-        s = new StringBuilder();
-        i = 0;
-        j = -1;
-        steps = values.length;
+        initialize();
 
         direction = RIGHT;
         move(direction, steps);
@@ -83,5 +80,12 @@ public class Matrix2 {
         move(direction, steps);
 
         return s.toString();
+    }
+
+    private void initialize() {
+        s = new StringBuilder();
+        i = 0;
+        j = -1;
+        steps = values.length;
     }
 }
