@@ -18,9 +18,12 @@ public class Matrix2 {
         }
     }
 
-    private void moveDown() {
-        i++;
-        s.append(" " + values[i][j]);
+    private void moveDown(int steps) {
+        for (int k=0; k<steps; k++) {
+            i++;
+            if (i == 0 && j == 0) s.append(values[i][j]);
+            else s.append(" " + values[i][j]);
+        }
     }
 
     private void moveLeft() {
@@ -44,43 +47,43 @@ public class Matrix2 {
             moveRight(1);
         } else if (values.length == 2) {
             moveRight(2);
-            moveDown();
+            moveDown(1);
             moveLeft();
         } else if (values.length == 3) {
             moveRight(3);
-            moveDown();moveDown();
+            moveDown(2);
             moveLeft();moveLeft();
             moveUp();
             moveRight(1);
         } else if (values.length == 4) {
             moveRight(4);
-            moveDown();moveDown();moveDown();
+            moveDown(3);
             moveLeft();moveLeft();moveLeft();
             moveUp();moveUp();
             moveRight(2);
-            moveDown();
+            moveDown(1);
             moveLeft();
         } else if (values.length == 5) {
             moveRight(5);
-            moveDown();moveDown();moveDown();moveDown();
+            moveDown(4);
             moveLeft();moveLeft();moveLeft();moveLeft();
             moveUp();moveUp();moveUp();
             moveRight(3);
-            moveDown();moveDown();
+            moveDown(2);
             moveLeft();moveLeft();
             moveUp();
             moveRight(1);
         } else if (values.length == 6) {
             moveRight(6);
-            moveDown();moveDown();moveDown();moveDown();moveDown();
+            moveDown(5);
             moveLeft();moveLeft();moveLeft();moveLeft();moveLeft();
             moveUp();moveUp();moveUp();moveUp();
             moveRight(4);
-            moveDown();moveDown();moveDown();
+            moveDown(3);
             moveLeft();moveLeft();moveLeft();
             moveUp();moveUp();
             moveRight(2);
-            moveDown();
+            moveDown(1);
             moveLeft();
         }
         return s.toString();
