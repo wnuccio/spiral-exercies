@@ -76,6 +76,13 @@ public class Matrix2 {
         direction = LEFT;
         move(direction, steps);
 
+        steps--;
+        direction = UP;
+        move(direction, steps);
+
+        direction = RIGHT;
+        move(direction, steps);
+
         return s.toString();
     }
 }

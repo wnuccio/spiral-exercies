@@ -72,7 +72,7 @@ class Matrix2Test {
     @Test
     void return_6_x_6_spiral() {
         Matrix2 matrix = new Matrix2(new int[][] {
-                new int[]{1,  2,  3,  4,  5,  6},
+                new int[]{1,  2,  3,  4,  5,   6},
                 new int[]{20, 21, 22, 23, 24,  7},
                 new int[]{19, 32, 33, 34, 25,  8},
                 new int[]{18, 31, 36, 35, 26,  9},
@@ -82,6 +82,23 @@ class Matrix2Test {
 
         assertEquals("1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 " +
                 "21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36", matrix.toSpiral());
+    }
+
+    @Test
+    void return_7_x_7_spiral() {
+        Matrix2 matrix = new Matrix2(new int[][] {
+                new int[]{1,  2,  3,  4,  5,   6,  7},
+                new int[]{24, 25, 26, 27, 28, 29,  8},
+                new int[]{23, 40, 41, 42, 43, 30,  9},
+                new int[]{22, 39, 48, 49, 44, 31, 10},
+                new int[]{21, 38, 47, 46, 45, 32, 11},
+                new int[]{20, 37, 36, 35, 34, 33, 12},
+                new int[]{19, 18, 17, 16, 15, 14, 13}
+        });
+
+        assertEquals("1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 " +
+                "21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 " +
+                "37 38 39 40 41 42 43 44 45 46 47 48 49", matrix.toSpiral());
     }
 
 
