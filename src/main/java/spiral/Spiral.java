@@ -13,7 +13,7 @@ public class Spiral {
     private final int[][] rows;
 
     public Spiral(int[][] rows) {
-        assert(isSquare(rows));
+        assert (isSquare(rows));
 
         this.rows = rows;
         this.row1 = rows[0];
@@ -25,49 +25,48 @@ public class Spiral {
     }
 
     enum Direction {
-        LEFT_RIGHT, UP_DOWN, RIGHT_LEFT, DOWN_UP
+        RIGHT, DOWN, LEFT, UP
     }
 
     public String asString() {
         List<Integer> l = new ArrayList<>();
 
-        int iMin=0, jMin=0;
-        int iMax = rows.length-1, jMax = rows.length-1;
-        int i=iMin, j=jMin;
-        Direction d = LEFT_RIGHT;
-        boolean notEnd = i != iMax;
+        int iMin = 0, jMin = 0;
+        int iMax = rows.length - 1, jMax = rows.length - 1;
+        int i = iMin, j = jMin;
+        Direction d = RIGHT;
 
         boolean end = false;
-        while(notEnd) {
+        while (!end) {
             System.out.println(String.format("[%s, %s]", i, j));
             l.add(rows[i][j]);
 
-            switch(d) {
-                case LEFT_RIGHT:
-                    if (j<jMax) { j++; break; }
+            switch (d) {
+                case RIGHT:
+                    if (j < jMax) {j++;break;}
                     iMin++;
-                    d = UP_DOWN;
+                    d = DOWN;
 
-                case UP_DOWN:
-                    if (i<iMax) { i++; break; }
+                case DOWN:
+                    if (i < iMax) {i++;break;}
                     jMax--;
-                    d = RIGHT_LEFT;
+                    d = LEFT;
 
-                case RIGHT_LEFT:
-                    if (j>jMin) { j--; break; }
+                case LEFT:
+                    if (j > jMin) {j--;break;}
                     iMax--;
-                    d = DOWN_UP;
+                    d = UP;
 
-                case DOWN_UP:
-                    if (i>iMin) { i--; break; }
+                case UP:
+                    if (i > iMin) {i--;break;}
                     jMin++;
-                    d = LEFT_RIGHT;
-                    if (j == jMax) { end = true; } else j++;
+                    d = RIGHT;
+                    if (j < jMax) j++; else iMin++;
             }
-
-            notEnd = !end;
+            end = iMin == iMax && jMin == jMax;
         }
 
+        l.add(rows[i][j]);
 
         String result = l.stream()
                 .map(String::valueOf)
