@@ -17,7 +17,7 @@ class MatrixTest {
                 new int[]{4, 3}
         });
 
-        assertEquals("1 2 3 4", matrix.asString());
+        assertEquals("1 2 3 4", matrix.toSpiral());
     }
 
     @Test
@@ -28,7 +28,7 @@ class MatrixTest {
                 new int[]{7, 6, 5},
         });
 
-        assertEquals("1 2 3 4 5 6 7 8 9", matrix.asString());
+        assertEquals("1 2 3 4 5 6 7 8 9", matrix.toSpiral());
     }
 
     @Test
@@ -40,7 +40,7 @@ class MatrixTest {
                 new int[]{10, 9,  8,  7}
         });
 
-        assertEquals("1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16", matrix.asString());
+        assertEquals("1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16", matrix.toSpiral());
     }
 
     @Test
@@ -56,6 +56,6 @@ class MatrixTest {
         List<Integer> l = new ArrayList<>();
         for (int i=1; i<=25; i++) l.add(i);
         String str = l.stream().map(String::valueOf).collect(Collectors.joining(" "));
-        assertEquals(str, matrix.asString());
+        assertEquals(str, matrix.toSpiral());
     }
 }

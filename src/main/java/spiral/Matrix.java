@@ -88,7 +88,7 @@ public class Matrix {
         this.rows = rows;
     }
 
-    public String asString() {
+    public String toSpiral() {
         List<Integer> numberSpiral = new ComputeSpiral().compute(rows);
         return joinAsString(numberSpiral);
     }
