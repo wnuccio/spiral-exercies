@@ -13,7 +13,7 @@ public class Matrix2 {
     }
 
     enum Direction {
-        RIGHT, DOWN, LEFT, UP;
+        RIGHT, DOWN, LEFT, UP
 
     }
     private void move(Direction direction, int steps) {
@@ -37,28 +37,27 @@ public class Matrix2 {
         Direction direction = RIGHT;
 
         move(direction, steps);
+        direction = DOWN;
+        steps--;
+        move(direction, steps);
 
         if (values.length == 0) {
 
         } else if (values.length == 1) {
 
         } else if (values.length == 2) {
-            move(DOWN, 1);
             move(LEFT, 1);
         } else if (values.length == 3) {
-            move(DOWN, 2);
             move(LEFT, 2);
             move(UP, 1);
             move(RIGHT, 1);
         } else if (values.length == 4) {
-            move(DOWN, 3);
             move(LEFT, 3);
             move(UP, 2);
             move(RIGHT, 2);
             move(DOWN, 1);
             move(LEFT, 1);
         } else if (values.length == 5) {
-            move(DOWN, 4);
             move(LEFT, 4);
             move(UP, 3);
             move(RIGHT, 3);
@@ -67,7 +66,6 @@ public class Matrix2 {
             move(UP, 1);
             move(RIGHT, 1);
         } else if (values.length == 6) {
-            move(DOWN, 5);
             move(LEFT, 5);
             move(UP, 4);
             move(RIGHT, 4);
