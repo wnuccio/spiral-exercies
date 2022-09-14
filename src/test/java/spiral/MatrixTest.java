@@ -12,20 +12,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class MatrixTest {
     @Test
     void return_simple_2_x_2_spiral() {
-        Matrix matrix = new Matrix(rows(
-                row(1, 2),
-                row(4, 3)));
+        Matrix matrix = new Matrix(new int[][] {
+                new int[]{1, 2},
+                new int[]{4, 3}
+        });
 
         assertEquals("1 2 3 4", matrix.asString());
-    }
-
-    @Test
-    void return_simple_2_x_2_spiral_inverting_last_row() {
-        Matrix matrix = new Matrix(rows(
-                row(1, 2),
-                row(3, 4)));
-
-        assertEquals("1 2 4 3", matrix.asString());
     }
 
     @Test
@@ -37,6 +29,18 @@ class MatrixTest {
         });
 
         assertEquals("1 2 3 4 5 6 7 8 9", matrix.asString());
+    }
+
+    @Test
+    void return_4_x_4_spiral() {
+        Matrix matrix = new Matrix(new int[][] {
+                new int[]{1,  2,  3,  4},
+                new int[]{12, 13, 14, 5},
+                new int[]{11, 16, 15, 6},
+                new int[]{10, 9,  8,  7}
+        });
+
+        assertEquals("1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16", matrix.asString());
     }
 
     @Test
@@ -53,13 +57,5 @@ class MatrixTest {
         for (int i=1; i<=25; i++) l.add(i);
         String str = l.stream().map(String::valueOf).collect(Collectors.joining(" "));
         assertEquals(str, matrix.asString());
-    }
-
-    private int[] row(int i, int i1) {
-        return new int[]{i, i1};
-    }
-
-    private int[][] rows(int[] row1, int[] row2) {
-        return new int[][]{row1, row2};
     }
 }
