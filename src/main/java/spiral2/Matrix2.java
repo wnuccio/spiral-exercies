@@ -34,22 +34,12 @@ public class Matrix2 {
     public String toSpiral() {
         initialize();
 
-        moveRight();
-        moveDown();
-        moveLeft();
-        moveUp();
-
-        moveRight();
-        moveDown();
-        moveLeft();
-        moveUp();
-
-        moveRight();
-        moveDown();
-        moveLeft();
-        moveUp();
-
-        moveRight();
+        while(steps > 0) {
+            moveRight();
+            moveDown();
+            moveLeft();
+            moveUp();
+        }
 
         return s.toString();
     }
