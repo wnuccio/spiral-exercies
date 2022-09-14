@@ -44,4 +44,18 @@ class Matrix2Test {
         assertEquals("1 2 3 4 5 6 7 8 9", matrix.toSpiral());
     }
 
+    @Test
+    void return_4_x_4_spiral() {
+        Matrix2 matrix = new Matrix2(new int[][] {
+                new int[]{1,  2,  3,  4},
+                new int[]{12, 13, 14, 5},
+                new int[]{11, 16, 15, 6},
+                new int[]{10, 9,  8,  7}
+        });
+
+        assertEquals("1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16", matrix.toSpiral());
+    }
+
+
+
 }

@@ -45,7 +45,7 @@ public class Matrix2 {
             moveRight();
             moveDown();
             moveLeft();
-        } else { // values.length == 3
+        } else if (values.length == 3) {
             moveRight();
             moveRight();
             moveRight();
@@ -55,6 +55,23 @@ public class Matrix2 {
             moveLeft();
             moveUp();
             moveRight();
+        } else if (values.length == 4) {
+            moveRight();
+            moveRight();
+            moveRight();
+            moveRight();
+            moveDown();
+            moveDown();
+            moveDown();
+            moveLeft();
+            moveLeft();
+            moveLeft();
+            moveUp();
+            moveUp();
+            moveRight();
+            moveRight();
+            moveDown();
+            moveLeft();
         }
         return s.toString();
     }
