@@ -9,28 +9,28 @@ import java.util.stream.Collectors;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
-class SpiralTest {
+class MatrixTest {
     @Test
     void return_simple_2_x_2_spiral() {
-        Spiral spiral = new Spiral(rows(
+        Matrix matrix = new Matrix(rows(
                 row(1, 2),
                 row(4, 3)));
 
-        assertEquals("1 2 3 4", spiral.asString());
+        assertEquals("1 2 3 4", matrix.asString());
     }
 
     @Test
     void return_simple_2_x_2_spiral_inverting_last_row() {
-        Spiral spiral = new Spiral(rows(
+        Matrix matrix = new Matrix(rows(
                 row(1, 2),
                 row(3, 4)));
 
-        assertEquals("1 2 4 3", spiral.asString());
+        assertEquals("1 2 4 3", matrix.asString());
     }
 
     @Test
     void return_complex_spiral() {
-        Spiral spiral = new Spiral(new int[][] {
+        Matrix matrix = new Matrix(new int[][] {
                 new int[]{1, 2, 3, 4, 5},
                 new int[]{16, 17, 18, 19, 6},
                 new int[]{15, 24, 25, 20, 7},
@@ -41,7 +41,7 @@ class SpiralTest {
         List<Integer> l = new ArrayList<>();
         for (int i=1; i<=25; i++) l.add(i);
         String str = l.stream().map(String::valueOf).collect(Collectors.joining(" "));
-        assertEquals(str, spiral.asString());
+        assertEquals(str, matrix.asString());
     }
 
     private int[] row(int i, int i1) {

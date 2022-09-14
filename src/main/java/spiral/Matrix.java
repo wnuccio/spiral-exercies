@@ -81,10 +81,10 @@ class ComputeSpiral {
     }
 }
 
-public class Spiral {
+public class Matrix {
     private final int[][] rows;
 
-    public Spiral(int[][] rows) {
+    public Matrix(int[][] rows) {
         this.rows = rows;
     }
 
