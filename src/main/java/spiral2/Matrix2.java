@@ -1,5 +1,8 @@
 package spiral2;
 
+import static spiral2.Matrix2.Direction.DOWN;
+import static spiral2.Matrix2.Direction.RIGHT;
+
 public class Matrix2 {
     private final int[][] values;
 
@@ -10,17 +13,16 @@ public class Matrix2 {
         this.values = values;
     }
 
-    private void moveRight(int steps) {
-        for (int k=0; k<steps; k++) {
-            j++;
-            if (i == 0 && j == 0) s.append(values[i][j]);
-            else s.append(" " + values[i][j]);
-        }
+    enum Direction {
+        RIGHT, DOWN, LEFT, UP
     }
 
-    private void moveDown(int steps) {
+    private void move(Direction direction, int steps) {
         for (int k=0; k<steps; k++) {
-            i++;
+            switch (direction) {
+                case RIGHT: j++; break;
+                case DOWN: i++; break;
+            }
             if (i == 0 && j == 0) s.append(values[i][j]);
             else s.append(" " + values[i][j]);
         }
@@ -44,46 +46,46 @@ public class Matrix2 {
         if (values.length == 0) {
 
         } else if (values.length == 1) {
-            moveRight(1);
+            move(RIGHT, 1);
         } else if (values.length == 2) {
-            moveRight(2);
-            moveDown(1);
+            move(RIGHT, 2);
+            move(DOWN, 1);
             moveLeft();
         } else if (values.length == 3) {
-            moveRight(3);
-            moveDown(2);
+            move(RIGHT, 3);
+            move(DOWN, 2);
             moveLeft();moveLeft();
             moveUp();
-            moveRight(1);
+            move(RIGHT, 1);
         } else if (values.length == 4) {
-            moveRight(4);
-            moveDown(3);
+            move(RIGHT, 4);
+            move(DOWN, 3);
             moveLeft();moveLeft();moveLeft();
             moveUp();moveUp();
-            moveRight(2);
-            moveDown(1);
+            move(RIGHT, 2);
+            move(DOWN, 1);
             moveLeft();
         } else if (values.length == 5) {
-            moveRight(5);
-            moveDown(4);
+            move(RIGHT, 5);
+            move(DOWN, 4);
             moveLeft();moveLeft();moveLeft();moveLeft();
             moveUp();moveUp();moveUp();
-            moveRight(3);
-            moveDown(2);
+            move(RIGHT, 3);
+            move(DOWN, 2);
             moveLeft();moveLeft();
             moveUp();
-            moveRight(1);
+            move(RIGHT, 1);
         } else if (values.length == 6) {
-            moveRight(6);
-            moveDown(5);
+            move(RIGHT, 6);
+            move(DOWN, 5);
             moveLeft();moveLeft();moveLeft();moveLeft();moveLeft();
             moveUp();moveUp();moveUp();moveUp();
-            moveRight(4);
-            moveDown(3);
+            move(RIGHT, 4);
+            move(DOWN, 3);
             moveLeft();moveLeft();moveLeft();
             moveUp();moveUp();
-            moveRight(2);
-            moveDown(1);
+            move(RIGHT, 2);
+            move(DOWN, 1);
             moveLeft();
         }
         return s.toString();
