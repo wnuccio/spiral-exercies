@@ -32,14 +32,15 @@ public class Matrix2 {
     }
 
     public String toSpiral() {
-        if (values.length == 0) return "";
-        if (values.length == 1) return "1";
-
         s = new StringBuilder();
         i = 0;
         j = -1;
 
-        if (values.length == 2) {
+        if (values.length == 0) {
+
+        } else if (values.length == 1) {
+            moveRight();
+        } else if (values.length == 2) {
             moveRight();
             moveRight();
             moveDown();
