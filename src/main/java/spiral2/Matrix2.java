@@ -43,35 +43,81 @@ public class Matrix2 {
         } else if (values.length == 2) {
             moveRight();
             moveRight();
+
             moveDown();
+
             moveLeft();
         } else if (values.length == 3) {
             moveRight();
             moveRight();
             moveRight();
+
             moveDown();
             moveDown();
+
             moveLeft();
             moveLeft();
+
             moveUp();
+
             moveRight();
         } else if (values.length == 4) {
             moveRight();
             moveRight();
             moveRight();
             moveRight();
+
             moveDown();
             moveDown();
             moveDown();
+
             moveLeft();
             moveLeft();
             moveLeft();
+
             moveUp();
             moveUp();
+
             moveRight();
             moveRight();
+
             moveDown();
+
             moveLeft();
+        } else if (values.length == 5) {
+            moveRight();
+            moveRight();
+            moveRight();
+            moveRight();
+            moveRight();
+
+            moveDown();
+            moveDown();
+            moveDown();
+            moveDown();
+
+            moveLeft();
+            moveLeft();
+            moveLeft();
+            moveLeft();
+
+            moveUp();
+            moveUp();
+            moveUp();
+
+            moveRight();
+            moveRight();
+            moveRight();
+
+            moveDown();
+            moveDown();
+
+            moveLeft();
+            moveLeft();
+
+            moveUp();
+
+            moveRight();
         }
         return s.toString();
     }
