@@ -40,9 +40,14 @@ public class Matrix2 {
                 case LEFT: j--; break;
                 case UP: i--; break;
             }
-            if (i == 0 && j == 0) s.append(values[i][j]);
-            else s.append(" ").append(values[i][j]);
+
+            if ( ! onFirstElement()) s.append(" ");
+            s.append(values[i][j]);
         }
+    }
+
+    private boolean onFirstElement() {
+        return i == 0 && j == 0;
     }
 
     private void initialize() {
