@@ -29,6 +29,17 @@ class MatrixTest {
     }
 
     @Test
+    void return_3_x_3_spiral() {
+        Matrix matrix = new Matrix(new int[][] {
+                new int[]{1, 2, 3},
+                new int[]{8, 9, 4},
+                new int[]{7, 6, 5},
+        });
+
+        assertEquals("1 2 3 4 5 6 7 8 9", matrix.asString());
+    }
+
+    @Test
     void return_complex_spiral() {
         Matrix matrix = new Matrix(new int[][] {
                 new int[]{1, 2, 3, 4, 5},
