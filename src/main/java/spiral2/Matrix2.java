@@ -21,19 +21,17 @@ public class Matrix2 {
         initialize();
 
         while(steps > 0) {
-            move(RIGHT, steps);
-            steps--;
-            move(DOWN, steps);
-            move(LEFT, steps);
-            steps--;
-            move(UP, steps);
+            move(RIGHT);
+            move(DOWN);
+            move(LEFT);
+            move(UP);
         }
 
         return s.toString();
     }
 
-    private void move(Direction direction, int steps) {
-        for (int k=0; k<steps; k++) {
+    private void move(Direction direction) {
+        for (int k=0; k<this.steps; k++) {
             switch (direction) {
                 case RIGHT: j++; break;
                 case DOWN: i++; break;
@@ -44,6 +42,8 @@ public class Matrix2 {
             if ( ! onFirstElement()) s.append(" ");
             s.append(values[i][j]);
         }
+
+        if (direction == RIGHT || direction == LEFT) this.steps--;
     }
 
     private boolean onFirstElement() {
