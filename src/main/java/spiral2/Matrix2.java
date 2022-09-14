@@ -1,7 +1,6 @@
 package spiral2;
 
-import static spiral2.Matrix2.Direction.DOWN;
-import static spiral2.Matrix2.Direction.RIGHT;
+import static spiral2.Matrix2.Direction.*;
 
 public class Matrix2 {
     private final int[][] values;
@@ -22,15 +21,11 @@ public class Matrix2 {
             switch (direction) {
                 case RIGHT: j++; break;
                 case DOWN: i++; break;
+                case LEFT: j--; break;
             }
             if (i == 0 && j == 0) s.append(values[i][j]);
             else s.append(" " + values[i][j]);
         }
-    }
-
-    private void moveLeft() {
-        j--;
-        s.append(" " + values[i][j]);
     }
 
     private void moveUp() {
@@ -50,43 +45,43 @@ public class Matrix2 {
         } else if (values.length == 2) {
             move(RIGHT, 2);
             move(DOWN, 1);
-            moveLeft();
+            move(LEFT, 1);
         } else if (values.length == 3) {
             move(RIGHT, 3);
             move(DOWN, 2);
-            moveLeft();moveLeft();
+            move(LEFT, 2);
             moveUp();
             move(RIGHT, 1);
         } else if (values.length == 4) {
             move(RIGHT, 4);
             move(DOWN, 3);
-            moveLeft();moveLeft();moveLeft();
+            move(LEFT, 3);
             moveUp();moveUp();
             move(RIGHT, 2);
             move(DOWN, 1);
-            moveLeft();
+            move(LEFT, 1);
         } else if (values.length == 5) {
             move(RIGHT, 5);
             move(DOWN, 4);
-            moveLeft();moveLeft();moveLeft();moveLeft();
+            move(LEFT, 4);
             moveUp();moveUp();moveUp();
             move(RIGHT, 3);
             move(DOWN, 2);
-            moveLeft();moveLeft();
+            move(LEFT, 2);
             moveUp();
             move(RIGHT, 1);
         } else if (values.length == 6) {
             move(RIGHT, 6);
             move(DOWN, 5);
-            moveLeft();moveLeft();moveLeft();moveLeft();moveLeft();
+            move(LEFT, 5);
             moveUp();moveUp();moveUp();moveUp();
             move(RIGHT, 4);
             move(DOWN, 3);
-            moveLeft();moveLeft();moveLeft();
+            move(LEFT, 3);
             moveUp();moveUp();
             move(RIGHT, 2);
             move(DOWN, 1);
-            moveLeft();
+            move(LEFT, 1);
         }
         return s.toString();
     }
