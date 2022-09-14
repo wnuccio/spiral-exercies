@@ -10,10 +10,12 @@ public class Matrix2 {
         this.values = values;
     }
 
-    private void moveRight() {
-        j++;
-        if (i==0 && j==0) s.append(values[i][j]);
-        else s.append(" " + values[i][j]);
+    private void moveRight(int steps) {
+        for (int k=0; k<steps; k++) {
+            j++;
+            if (i == 0 && j == 0) s.append(values[i][j]);
+            else s.append(" " + values[i][j]);
+        }
     }
 
     private void moveDown() {
@@ -39,45 +41,45 @@ public class Matrix2 {
         if (values.length == 0) {
 
         } else if (values.length == 1) {
-            moveRight();
+            moveRight(1);
         } else if (values.length == 2) {
-            moveRight();moveRight();
+            moveRight(2);
             moveDown();
             moveLeft();
         } else if (values.length == 3) {
-            moveRight();moveRight();moveRight();
+            moveRight(3);
             moveDown();moveDown();
             moveLeft();moveLeft();
             moveUp();
-            moveRight();
+            moveRight(1);
         } else if (values.length == 4) {
-            moveRight();moveRight();moveRight();moveRight();
+            moveRight(4);
             moveDown();moveDown();moveDown();
             moveLeft();moveLeft();moveLeft();
             moveUp();moveUp();
-            moveRight();moveRight();
+            moveRight(2);
             moveDown();
             moveLeft();
         } else if (values.length == 5) {
-            moveRight();moveRight();moveRight();moveRight();moveRight();
+            moveRight(5);
             moveDown();moveDown();moveDown();moveDown();
             moveLeft();moveLeft();moveLeft();moveLeft();
             moveUp();moveUp();moveUp();
-            moveRight();moveRight();moveRight();
+            moveRight(3);
             moveDown();moveDown();
             moveLeft();moveLeft();
             moveUp();
-            moveRight();
+            moveRight(1);
         } else if (values.length == 6) {
-            moveRight();moveRight();moveRight();moveRight();moveRight();moveRight();
+            moveRight(6);
             moveDown();moveDown();moveDown();moveDown();moveDown();
             moveLeft();moveLeft();moveLeft();moveLeft();moveLeft();
             moveUp();moveUp();moveUp();moveUp();
-            moveRight();moveRight();moveRight();moveRight();
+            moveRight(4);
             moveDown();moveDown();moveDown();
             moveLeft();moveLeft();moveLeft();
             moveUp();moveUp();
-            moveRight();moveRight();
+            moveRight(2);
             moveDown();
             moveLeft();
         }
