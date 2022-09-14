@@ -33,9 +33,11 @@ public class Matrix2 {
         s = new StringBuilder();
         i = 0;
         j = -1;
-        int steps = values.length;
-        Direction direction = RIGHT;
+        int steps;
+        Direction direction;
 
+        steps = values.length;
+        direction = RIGHT;
         move(direction, steps);
         steps--;
         direction = DOWN;
@@ -45,6 +47,8 @@ public class Matrix2 {
         steps--;
         direction = UP;
         move(direction, steps);
+        direction = RIGHT;
+        move(direction, steps);
 
         if (values.length == 0) {
 
@@ -53,19 +57,16 @@ public class Matrix2 {
         } else if (values.length == 2) {
 
         } else if (values.length == 3) {
-            move(RIGHT, 1);
+
         } else if (values.length == 4) {
-            move(RIGHT, 2);
             move(DOWN, 1);
             move(LEFT, 1);
         } else if (values.length == 5) {
-            move(RIGHT, 3);
             move(DOWN, 2);
             move(LEFT, 2);
             move(UP, 1);
             move(RIGHT, 1);
         } else if (values.length == 6) {
-            move(RIGHT, 4);
             move(DOWN, 3);
             move(LEFT, 3);
             move(UP, 2);
