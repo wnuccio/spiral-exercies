@@ -5,45 +5,44 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ZigZagTest {
-    @Test
-    void convert_when_letters_are_not_more_than_rows() {
-        assertEquals("A", new ZigZag("A", 1).convert());
-        assertEquals("A", new ZigZag("A", 2).convert());
-        assertEquals("AB", new ZigZag("AB", 2).convert());
-        assertEquals("AB", new ZigZag("AB", 3).convert());
-        assertEquals("ABC", new ZigZag("ABC", 3).convert());
-        assertEquals("ABC", new ZigZag("ABC", 4).convert());
-    }
 
     @Test
     void convert_on_one_row() {
-        assertEquals("A", new ZigZag("A", 1).convert());
-        assertEquals("AB", new ZigZag("AB", 1).convert());
-        assertEquals("ABC", new ZigZag("ABC", 1).convert());
-        assertEquals("ABCD", new ZigZag("ABCD", 1).convert());
+        assertZigZag("A", 1, "A");
+        assertZigZag("AB", 1, "AB");
+        assertZigZag("ABC", 1, "ABC");
+        assertZigZag("ABCD", 1, "ABCD");
     }
 
     @Test
     void convert_on_two_rows() {
-        assertEquals("A", new ZigZag("A", 2).convert());
-        assertEquals("AB", new ZigZag("AB", 2).convert());
-        assertEquals("ACB", new ZigZag("ABC", 2).convert());
-        assertEquals("ACBD", new ZigZag("ABCD", 2).convert());
-        assertEquals("ACEBD", new ZigZag("ABCDE", 2).convert());
+        assertZigZag("A", 2, "A");
+        assertZigZag("AB", 2, "AB");
+        assertZigZag("ABC", 2, "ACB");
+        assertZigZag("ABCD", 2, "ACBD");
+        assertZigZag("ABCDE", 2, "ACEBD");
     }
 
     @Test
     void convert_on_three_rows() {
-//        assertEquals("A", new ZigZag("ABC", 3).convert());
-//        assertEquals("ACB", new ZigZag("ABC", 3).convert());
-//        assertEquals("ACB", new ZigZag("ABC", 3).convert());
-//        assertEquals("ACBD", new ZigZag("ABCD", 3).convert());
-//        assertEquals("ACEBD", new ZigZag("ABCDE", 3).convert());
+        assertZigZag("A", 3, "A");
+        assertZigZag("AB", 3, "AB");
+        assertZigZag("ABC", 3, "ABC");
+    }
+
+    @Test
+    void convert_on_four_rows() {
+        assertZigZag("A", 4, "A");
+        assertZigZag("AB", 4, "AB");
+        assertZigZag("ABC", 4, "ABC");
+        assertZigZag("ABCD", 4, "ABCD");
     }
 
     /*
         A C E
         B D
      */
-
+    private void assertZigZag(String string, int numRows, String expected) {
+        assertEquals(expected, new ZigZag(string, numRows).convert());
+    }
 }
