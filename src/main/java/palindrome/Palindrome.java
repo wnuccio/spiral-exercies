@@ -10,13 +10,16 @@ public class Palindrome {
     public boolean isPalindrome() {
         int[] digits = buildDigits(val);
         if (digits.length == 1) return true;
-        return digits[0] == digits[1];
+        if (digits.length == 2) return digits[0] == digits[1];
+        return true;
     }
 
     private int[] buildDigits(int val) {
         int first = val % 10;
         int second = val / 10;
-        if (second == 0) return new int[]{first};
-        return new int[]{first, second};
+        int third = val / 100;
+        if (second == 0 && third == 0) return new int[]{first};
+        if (third == 0 ) return new int[]{first, second};
+        return new int[]{first, second, third};
     }
 }
