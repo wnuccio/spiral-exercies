@@ -47,9 +47,11 @@ public class Palindrome {
         int[] result = new int[numOfDigits];
 
         int currVal = val;
-        for(int i=0; i < numOfDigits; i++) {
+        int i=0;
+        while(currVal != 0) {
             result[i] = (currVal % 10);
             currVal = currVal / 10;
+            i++;
         }
 
         return result;
