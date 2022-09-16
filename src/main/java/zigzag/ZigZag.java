@@ -10,6 +10,6 @@ public class ZigZag {
     }
 
     public String convert() {
-        return "A";
+        return s;
     }
 }

@@ -11,4 +11,19 @@ public class ZigZagTest {
 
         assertEquals("A", result);
     }
+
+    @Test
+    void convert_two_letters_on_one_row() {
+        String result = new ZigZag("AB", 1).convert();
+
+        assertEquals("AB", result);
+    }
+
+    @Test
+    void convert_two_letters_on_two_rows() {
+        String result = new ZigZag("AB", 2).convert();
+
+        assertEquals("AB", result);
+    }
+
 }
