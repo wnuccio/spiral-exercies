@@ -10,6 +10,9 @@ public class ZigZag {
     }
 
     public String convert() {
+        if (s.length() <= numRows) return s;
+        int[] rows = new int[numRows];
+
         return s;
     }
 }
