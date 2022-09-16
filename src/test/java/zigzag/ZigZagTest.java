@@ -23,11 +23,19 @@ public class ZigZagTest {
         assertZigZag("ABCDE", 2, "ACEBD");
     }
 
+    /*
+        A   E
+        B D
+        C
+     */
+
     @Test
     void convert_on_three_rows() {
         assertZigZag("A", 3, "A");
         assertZigZag("AB", 3, "AB");
         assertZigZag("ABC", 3, "ABC");
+        assertZigZag("ABCD", 3, "ABDC");
+        assertZigZag("ABCDE", 3, "AEBDC");
     }
 
     @Test
@@ -38,10 +46,6 @@ public class ZigZagTest {
         assertZigZag("ABCD", 4, "ABCD");
     }
 
-    /*
-        A C E
-        B D
-     */
     private void assertZigZag(String string, int numRows, String expected) {
         assertEquals(expected, new ZigZag(string, numRows).convert());
     }

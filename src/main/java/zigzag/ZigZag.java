@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ZigZag {
-    private String s;
-    private int numRows;
+    private final String s;
+    private final int numRows;
 
     public ZigZag(String s, int numRows) {
         this.s = s;
@@ -21,8 +21,8 @@ public class ZigZag {
 
         String asString() {
             StringBuilder str = new StringBuilder();
-            for (int i=0; i<chars.size(); i++) {
-                str.append(chars.get(i));
+            for (Character aChar : chars) {
+                str.append(aChar);
             }
             return str.toString();
         }
@@ -77,8 +77,10 @@ public class ZigZag {
             moveOn();
         }
 
+
         if (numRows == 1) return rows[0].asString();
         if (numRows == 2) return rows[0].asString() + rows[1].asString();
+        if (numRows == 3) return rows[0].asString() + rows[1].asString() + rows[2].asString();
         return s;
     }
 }
