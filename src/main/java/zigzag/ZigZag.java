@@ -14,9 +14,9 @@ public class ZigZag {
     }
 
     private static class Row {
-        List<Character> chars = new ArrayList<>();
+        private List<Character> chars = new ArrayList<>();
 
-        void add(Character ch) {
+        void add(char ch) {
             chars.add(ch);
         }
 
