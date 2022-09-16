@@ -6,6 +6,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PalindromeTest {
     @Test
+    void negative_is_not_palindrome() {
+        assertEquals(false, new Palindrome(-121).isPalindrome());
+    }
+
+    @Test
     void one_digit_is_palindrome() {
         assertEquals(true, new Palindrome(1).isPalindrome());
     }
@@ -38,5 +43,15 @@ public class PalindromeTest {
     @Test
     void four_digits_is_palindrome_here() {
         assertEquals(true, new Palindrome(1001).isPalindrome());
+    }
+
+    @Test
+    void not_dd() {
+        assertEquals(false, new Palindrome(1234).isPalindrome());
+    }
+
+    @Test
+    void compute_is_palindrome_for_big_int() {
+        assertEquals(false, new Palindrome(1410110141).isPalindrome());
     }
 }

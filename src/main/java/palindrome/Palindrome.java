@@ -7,9 +7,9 @@ public class Palindrome {
         this.val = val;
     }
 
-
     // 12344321
     public boolean isPalindrome() {
+        if (val < 0) return false;
         int[] digits = buildDigits(val);
         int left = 0;
         int right = digits.length - 1;
@@ -24,14 +24,15 @@ public class Palindrome {
         return true;
     }
 
+    /*
+            2463
+           3 - 246
+           6 - 24
+           4 - 2
+           2 - 0
+     */
+
     private int[] buildDigits(int val) {
-        /** 25346
-         * 1  10 => 2534
-         * 2  100 => 253
-         * 3  1000 => 25
-         * 4  10000 => 2
-         * 5  100000 => 0
-         */
         boolean areThereDigits = true;
         int numOfDigits = 1;
         int pow10 = 10;
@@ -45,10 +46,10 @@ public class Palindrome {
         }
         int[] result = new int[numOfDigits];
 
-        int divisor = (int) Math.pow(10, numOfDigits-1);
-        for (int i=0; i<numOfDigits; i++) {
-            result[i] = (val / divisor) % 10;
-            divisor = divisor / 10;
+        int currVal = val;
+        for(int i=0; i < numOfDigits; i++) {
+            result[i] = (currVal % 10);
+            currVal = currVal / 10;
         }
 
         return result;
