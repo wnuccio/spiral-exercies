@@ -46,11 +46,10 @@ public class Palindrome {
         int[] result = new int[numOfDigits];
 
         int divisor = (int) Math.pow(10, numOfDigits-1);
-        for (int i=0; i<numOfDigits-1; i++) {
-            result[i] = val / divisor;
+        for (int i=0; i<numOfDigits; i++) {
+            result[i] = (val / divisor) % 10;
             divisor = divisor / 10;
         }
-        result[numOfDigits-1] = val % 10;
 
         return result;
     }

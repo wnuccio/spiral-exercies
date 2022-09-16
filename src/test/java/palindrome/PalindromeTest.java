@@ -34,4 +34,9 @@ public class PalindromeTest {
     void three_digits_is_not_palindrome_in_other_cases() {
         assertEquals(false, new Palindrome(110).isPalindrome());
     }
+
+    @Test
+    void four_digits_is_palindrome_here() {
+        assertEquals(true, new Palindrome(1001).isPalindrome());
+    }
 }
