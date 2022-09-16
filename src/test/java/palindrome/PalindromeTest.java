@@ -24,4 +24,14 @@ public class PalindromeTest {
     void three_digits_is_palindrome_when_digits_are_equals() {
         assertEquals(true, new Palindrome(111).isPalindrome());
     }
+
+    @Test
+    void three_digits_is_palindrome_when_first_and_last_digits_are_equals() {
+        assertEquals(true, new Palindrome(101).isPalindrome());
+    }
+
+    @Test
+    void three_digits_is_not_palindrome_in_other_cases() {
+        assertEquals(false, new Palindrome(110).isPalindrome());
+    }
 }

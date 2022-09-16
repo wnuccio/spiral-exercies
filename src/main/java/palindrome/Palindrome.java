@@ -7,10 +7,20 @@ public class Palindrome {
         this.val = val;
     }
 
+
+    // 12344321
     public boolean isPalindrome() {
         int[] digits = buildDigits(val);
-        if (digits.length == 1) return true;
-        if (digits.length == 2) return digits[0] == digits[1];
+        int left = 0;
+        int right = digits.length - 1;
+
+        boolean endOfSearch = left >= right;
+        while(! endOfSearch) {
+            if (digits[left] != digits[right]) return false;
+            endOfSearch = left >= right;
+            left++;
+            right--;
+        }
         return true;
     }
 
