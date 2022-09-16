@@ -1,9 +1,5 @@
 package zigzag;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
 public class ZigZag {
     private final String s;
     private final int numRows;
@@ -13,15 +9,23 @@ public class ZigZag {
         this.numRows = numRows;
     }
 
-    private static class Row {
-        private List<Character> chars = new ArrayList<>();
+    private class Row {
+        private final char[] chars;
+        private int i;
+        public Row() {
+            this.chars = new char[s.length()];
+            this.i = 0;
+        }
 
         void add(char ch) {
-            chars.add(ch);
+            if (i >= chars.length) throw new IndexOutOfBoundsException();
+            chars[i++] = ch;
         }
 
         String asString() {
-            return chars.stream().map(Object::toString).collect(Collectors.joining());
+            StringBuilder str = new StringBuilder();
+            for (int j=0; j<i; j++) str.append(chars[j]);
+            return str.toString();
         }
     }
 
