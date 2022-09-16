@@ -25,18 +25,6 @@ public class ZigZag {
         }
     }
 
-    /*
-            "123456789
-            r0:1   5  9
-            r1:2 4 6 8
-            r2:3   7
-
-            r0:1     7
-            r1:2   6 8
-            r2:3 5   9
-            r3:4
-     */
-
     int row; // in [0, numRows-1]
     boolean down;
     Row[] rows;
@@ -74,10 +62,10 @@ public class ZigZag {
             moveOn();
         }
 
-
-        if (numRows == 1) return rows[0].asString();
-        if (numRows == 2) return rows[0].asString() + rows[1].asString();
-        if (numRows == 3) return rows[0].asString() + rows[1].asString() + rows[2].asString();
-        return s;
+        StringBuilder build = new StringBuilder();
+        for (int i=0; i<numRows; i++) {
+            build.append(rows[i].asString());
+        }
+        return build.toString();
     }
 }

@@ -38,12 +38,20 @@ public class ZigZagTest {
         assertZigZag("ABCDE", 3, "AEBDC");
     }
 
+    /*
+        A     G    O
+        B   F H   N
+        C E   I M
+        D     L
+     */
     @Test
     void convert_on_four_rows() {
         assertZigZag("A", 4, "A");
         assertZigZag("AB", 4, "AB");
         assertZigZag("ABC", 4, "ABC");
         assertZigZag("ABCD", 4, "ABCD");
+        assertZigZag("ABCDE", 4, "ABCED");
+        assertZigZag("ABCDEFGHILMNO", 4, "AGOBFHNCEIMDL");
     }
 
     private void assertZigZag(String string, int numRows, String expected) {
