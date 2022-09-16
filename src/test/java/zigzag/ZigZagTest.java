@@ -23,15 +23,16 @@ public class ZigZagTest {
         assertEquals("ABC", new ZigZag("ABC", 4).convert());
     }
 
-    /*
-        1 3
-        2
-     */
     @Test
-    void convert_three_letters_on_two_rows() {
-        String result = new ZigZag("ABC", 2).convert();
-
-        assertEquals("ACB", result);
+    void convert_many_letters_on_two_rows() {
+        assertEquals("ACB", new ZigZag("ABC", 2).convert());
+        assertEquals("ACBD", new ZigZag("ABCD", 2).convert());
+        assertEquals("ACEBD", new ZigZag("ABCDE", 2).convert());
     }
+
+    /*
+        A C E
+        B D
+     */
 
 }
