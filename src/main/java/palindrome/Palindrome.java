@@ -15,11 +15,33 @@ public class Palindrome {
     }
 
     private int[] buildDigits(int val) {
-        int first = val % 10;
-        int second = val / 10;
-        int third = val / 100;
-        if (second == 0 && third == 0) return new int[]{first};
-        if (third == 0 ) return new int[]{first, second};
-        return new int[]{first, second, third};
+        /** 25346
+         * 1  10 => 2534
+         * 2  100 => 253
+         * 3  1000 => 25
+         * 4  10000 => 2
+         * 5  100000 => 0
+         */
+        boolean areThereDigits = true;
+        int numOfDigits = 1;
+        int pow10 = 10;
+        while(areThereDigits) {
+            int division = val / pow10;
+            if (division != 0) {
+                areThereDigits = true;
+                pow10 = pow10 * 10;
+                numOfDigits++;
+            } else areThereDigits = false;
+        }
+        int[] result = new int[numOfDigits];
+
+        int divisor = (int) Math.pow(10, numOfDigits-1);
+        for (int i=0; i<numOfDigits-1; i++) {
+            result[i] = val / divisor;
+            divisor = divisor / 10;
+        }
+        result[numOfDigits-1] = val % 10;
+
+        return result;
     }
 }
