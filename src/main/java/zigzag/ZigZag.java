@@ -2,6 +2,7 @@ package zigzag;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ZigZag {
     private final String s;
@@ -20,11 +21,7 @@ public class ZigZag {
         }
 
         String asString() {
-            StringBuilder str = new StringBuilder();
-            for (Character aChar : chars) {
-                str.append(aChar);
-            }
-            return str.toString();
+            return chars.stream().map(Object::toString).collect(Collectors.joining());
         }
     }
 
