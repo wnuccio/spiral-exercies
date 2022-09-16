@@ -46,11 +46,6 @@ public class PalindromeTest {
     }
 
     @Test
-    void not_dd() {
-        assertEquals(false, new Palindrome(1234).isPalindrome());
-    }
-
-    @Test
     void compute_is_palindrome_for_big_int() {
         assertEquals(true, new Palindrome(1410110141).isPalindrome());
     }

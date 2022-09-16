@@ -12,17 +12,12 @@ public class Palindrome {
     public boolean isPalindrome() {
         if (val < 0) return false;
         ArrayList<Integer> digits = buildDigits(val);
-        int left = 0;
-        int right = digits.size() - 1;
+        return isPalindromeRecursive(digits, 0, digits.size()-1);
+    }
 
-        boolean endOfSearch = left >= right;
-        while(! endOfSearch) {
-            if ( ! digits.get(left).equals(digits.get(right))) return false;
-            endOfSearch = left >= right;
-            left++;
-            right--;
-        }
-        return true;
+    private boolean isPalindromeRecursive(ArrayList<Integer> digits, int left, int right) {
+        if (left >= right) return true;
+        return digits.get(left).equals(digits.get(right)) && isPalindromeRecursive(digits, ++left, --right) ;
     }
 
     private ArrayList<Integer> buildDigits(int val) {
@@ -32,7 +27,6 @@ public class Palindrome {
             digits.add(currVal % 10);
             currVal = currVal / 10;
         }
-
         return digits;
     }
 }
