@@ -27,11 +27,11 @@ public class ZigZagTest {
         1 3
         2
      */
-//    @Test
-//    void convert_three_letters_on_two_rows() {
-//        String result = new ZigZag("ABC", 2).convert();
-//
-//        assertEquals("ACB", result);
-//    }
+    @Test
+    void convert_three_letters_on_two_rows() {
+        String result = new ZigZag("ABC", 2).convert();
+
+        assertEquals("ACB", result);
+    }
 
 }
