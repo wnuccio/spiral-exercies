@@ -3,6 +3,7 @@ package brackets;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class BracketsTest {
     @Test
@@ -10,13 +11,13 @@ public class BracketsTest {
         assertEquals(true, new Brackets("").isValid());
     }
 
-//    @Test
-//    void a_couple_of_brackets_is_valid_or_not() {
-//        assertTrue(new Brackets("()").isValid());
-//        assertTrue(new Brackets("((").isNotValid());
-//        assertTrue(new Brackets("))").isNotValid());
-//        assertTrue(new Brackets(")(").isNotValid());
-//    }
+    @Test
+    void a_couple_of_brackets_is_valid_or_not() {
+        assertTrue(new Brackets("()").isValid());
+        assertTrue(new Brackets("((").isNotValid());
+        assertTrue(new Brackets("))").isNotValid());
+        assertTrue(new Brackets(")(").isNotValid());
+    }
 
 //    @Test
 //    void a_couple_of_square_brackets_is_valid_or_not() {
@@ -33,16 +34,9 @@ public class BracketsTest {
 //        assertTrue(new Brackets(")(()").isNotValid());
 //    }
 //
-//    @Test
-//    void a_string_whose_length_is_odd_is_not_valid() {
-//        assertTrue(new Brackets("(((").isNotValid());
-//        assertTrue(new Brackets("(()").isNotValid());
-//        assertTrue(new Brackets("()(").isNotValid());
-//        assertTrue(new Brackets("())").isNotValid());
-//        assertTrue(new Brackets(")((").isNotValid());
-//        assertTrue(new Brackets(")()").isNotValid());
-//        assertTrue(new Brackets("))(").isNotValid());
-//        assertTrue(new Brackets(")))").isNotValid());
-//        assertTrue(new Brackets("((())").isNotValid());
-//    }
+    @Test
+    void a_string_whose_length_is_odd_is_not_valid() {
+        assertTrue(new Brackets("(").isNotValid());
+        assertTrue(new Brackets("())").isNotValid());
+    }
 }
