@@ -5,11 +5,11 @@ import java.util.Collections;
 import java.util.List;
 
 public class PhoneNumber {
-    private String s;
-    private Phone phone = new Phone();
+    private final String s;
+    private final Phone phone = new Phone();
 
-    public PhoneNumber(String s) {
-        this.s = s;
+    public PhoneNumber(String digits) {
+        this.s = digits;
     }
 
     /*
@@ -17,24 +17,24 @@ public class PhoneNumber {
        1 [c d e]
        2 [e f g]
      */
-    private List<String> combination(String s) {
+    public List<String> combinations() {
+        if (s.isEmpty()) return Collections.emptyList();
+        return computeCombinationsFor(s);
+    }
+
+    private List<String> computeCombinationsFor(String digits) {
         List<String> result = new ArrayList<>();
 
-        if (s.isEmpty()) {
+        if (digits.isEmpty()) {
             result.add("");
             return result;
         }
 
-        List<String> subCombinations = combination(s.substring(1));
-        for (Character ch : phone.charsOf(s.charAt(0)))
+        List<String> subCombinations = computeCombinationsFor(digits.substring(1));
+        for (Character ch : phone.charsOf(digits.charAt(0)))
             for (String str : subCombinations)
                 result.add(ch + str);
         return result;
-    }
-
-    public List<String> combinations() {
-        if (s.isEmpty()) return Collections.emptyList();
-        return combination(s);
     }
 
 }
