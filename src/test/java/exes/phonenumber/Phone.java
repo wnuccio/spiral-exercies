@@ -1,10 +1,10 @@
-package phonenumber;
+package exes.phonenumber;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class Phone {
-    private Map<Character, Character[]> map;
+    private final Map<Character, Character[]> map;
 
     public Phone() {
         this.map = new HashMap<>();

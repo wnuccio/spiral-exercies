@@ -1,4 +1,4 @@
-package phonenumber;
+package exes.phonenumber;
 
 import org.junit.jupiter.api.Test;
 
