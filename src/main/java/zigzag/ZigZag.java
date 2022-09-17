@@ -1,5 +1,8 @@
 package zigzag;
 
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 public class ZigZag {
     private final String s;
     private final int numRows;
@@ -66,10 +69,8 @@ public class ZigZag {
             moveOn();
         }
 
-        StringBuilder build = new StringBuilder();
-        for (int i=0; i<numRows; i++) {
-            build.append(rows[i].asString());
-        }
-        return build.toString();
+        return Stream.of(rows)
+                .map(Row::asString)
+                .collect(Collectors.joining());
     }
 }
