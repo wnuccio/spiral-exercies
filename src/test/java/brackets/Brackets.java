@@ -2,6 +2,7 @@ package brackets;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 public class Brackets {
     private final String s;
@@ -10,41 +11,12 @@ public class Brackets {
         this.s = s;
     }
 
-    static class Stack {
-        int i;
-        char[] brackets;
-
-        public Stack(int length) {
-            brackets = new char[length];
-            i = 0;
-        }
-
-        public void push(Bracket b) {
-            brackets[i] = b.toChar();
-            i++;
-        }
-
-        public boolean isEmpty() {
-            return i==0;
-        }
-
-        public Bracket pop() {
-            if (isEmpty()) throw new IllegalStateException();
-            i--;
-            return new Bracket(brackets[i]);
-        }
-    }
-
     static class Bracket {
-        private char ch;
+        private final char ch;
 
         @Override
         public String toString() {
             return ""+ch;
-        }
-
-        char toChar() {
-            return ch;
         }
 
         public Bracket(char ch) {
@@ -74,7 +46,7 @@ public class Brackets {
 
     public boolean isValid() {
         if (s.isEmpty()) return true;
-        Stack stack = new Stack(s.length());
+        Stack<Bracket> stack = new Stack<>();
 
         for (Bracket bracket: toBracketList()) {
             if (bracket.isOpened()) {
