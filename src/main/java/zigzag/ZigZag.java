@@ -23,7 +23,6 @@ public class ZigZag {
         }
 
         void add(char ch) {
-            if (i >= chars.length) throw new IndexOutOfBoundsException();
             chars[i++] = ch;
         }
 
