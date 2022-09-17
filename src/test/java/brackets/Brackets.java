@@ -47,38 +47,38 @@ public class Brackets {
             throw new IllegalArgumentException("Invalid char: " + ch);
         }
 
+        boolean isOpened() {
+            return ch == '(' || ch == '[' || ch == '{';
+        }
+
+        boolean isClosed() {
+            return ch == ')' || ch == ']' || ch == '}';
+        }
+
+
     }
 
     public boolean isValid() {
         if (s.isEmpty()) return true;
 
         Stack stack = new Stack(s.length());
-        Stack stack2 = new Stack(s.length()); // R S C
+        Stack stack2 = new Stack(s.length()); 
+        
         for (char ch : s.toCharArray()) {
-            if (isOpenedBracket(ch)) {
+            Bracket bracket = new Bracket(ch);
+
+            if (bracket.isOpened()) {
                 stack.push(ch);
-                stack2.push(kindOfBracket(ch));
+                stack2.push(bracket.kind());
             }
-            else if (isClosedBracket(ch)) {
+            else if (bracket.isClosed()) {
                 if (stack.isEmpty()) return false;
                 char lastOpened = stack.pop();
-                if (kindOfBracket(lastOpened) != kindOfBracket(ch)) return false;
+                if (new Bracket(lastOpened).kind() != bracket.kind()) return false;
             }
             else throw new IllegalArgumentException("Invalid char: " + ch);
         }
         return stack.isEmpty();
-    }
-
-    private boolean isClosedBracket(char ch) {
-        return ch == ')' || ch == ']' || ch == '}';
-    }
-
-    private boolean isOpenedBracket(char ch) {
-        return ch == '(' || ch == '[' || ch == '{';
-    }
-
-    private char kindOfBracket(char ch) {
-        return new Bracket(ch).kind();
     }
 
     public boolean isNotValid() {
