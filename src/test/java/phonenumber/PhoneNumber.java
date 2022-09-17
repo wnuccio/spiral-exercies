@@ -1,6 +1,7 @@
 package phonenumber;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -13,6 +14,7 @@ public class PhoneNumber {
     }
 
     public List<String> combinations() {
+        if (s.isEmpty()) return Collections.emptyList();
         Character[] chars = phone.charsOf(s.charAt(0));
         return Arrays.asList(chars).stream().map(String::valueOf).collect(Collectors.toList());
     }
