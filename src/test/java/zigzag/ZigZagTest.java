@@ -2,6 +2,9 @@ package zigzag;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ZigZagTest {
@@ -52,6 +55,9 @@ public class ZigZagTest {
         assertZigZag("ABCD", 4, "ABCD");
         assertZigZag("ABCDE", 4, "ABCED");
         assertZigZag("ABCDEFGHILMNO", 4, "AGOBFHNCEIMDL");
+
+        List<String> l = Arrays.asList("adsf", "sdf");
+        l.toArray(String[]::new);
     }
 
     private void assertZigZag(String string, int numRows, String expected) {

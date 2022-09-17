@@ -31,9 +31,9 @@ public class ZigZag {
         }
     }
 
-    int row; // in [0, numRows-1]
-    boolean down;
-    Row[] rows;
+    private int row; // in [0, numRows-1]
+    private boolean down;
+    private Row[] rows;
 
     private void init() {
         row = 0;
@@ -42,16 +42,6 @@ public class ZigZag {
         for (int i=0; i<rows.length; i++) rows[i] = new Row(s.length());
     }
 
-
-    /** down
-     *   actual value row
-     *        true     < numRows-1  => true
-     *        true    numRows-1     => false
-     *        false    >= 1         => false
-     *        false    0            => true
-     *
-     *        down = (down && row < numRows-1) || (! down && row == 0)
-     */
     private void moveOn() {
         if (numRows == 1) return;
         boolean continueGoingDown = down && row < numRows - 1;

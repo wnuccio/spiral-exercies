@@ -54,7 +54,6 @@ public class Matrix2 {
         s = new StringBuilder();
         i = 0;
         j = -1;
-        int steps = values.length;
-        return steps;
+        return values.length;
     }
 }
