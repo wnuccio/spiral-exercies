@@ -42,20 +42,24 @@ public class ZigZag {
         for (int i=0; i<rows.length; i++) rows[i] = new Row(s.length());
     }
 
+
+    /** down
+     *   actual value row
+     *        true     < numRows-1  => true
+     *        true    numRows-1     => false
+     *        false    >= 1         => false
+     *        false    0            => true
+     *
+     *        down = (down && row < numRows-1) || (! down && row == 0)
+     */
     private void moveOn() {
         if (numRows == 1) return;
-        if (down && row < numRows-1) {
-            row++;
-        } else if (down && row == numRows-1) {
-            down = false;
-            row--;
-        } else if ( ! down && row >= 1) {
-            row--;
-        } else if ( ! down && row == 0) {
-            down = true;
+        down = (down && row < numRows-1) || (! down && row == 0);
+
+        if (down && row < numRows-1 || ! down && row == 0) {
             row++;
         } else {
-            throw new RuntimeException("unreachable");
+            row--;
         }
     }
 
