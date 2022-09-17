@@ -10,6 +10,7 @@ public class Brackets {
     }
 
     private static Map<Character, Bracket> instances = new HashMap<>();
+
     {
         instances.put('(', new Bracket('(', 'R', true));
         instances.put(')', new Bracket(')', 'R', false));
@@ -46,10 +47,6 @@ public class Brackets {
         boolean isOpen() {
             return open;
         }
-
-        boolean isClosed() {
-            return ! isOpen();
-        }
     }
 
     public boolean isValid() {
@@ -59,14 +56,16 @@ public class Brackets {
         for (Bracket bracket : toBracketList()) {
             if (bracket.isOpen()) {
                 stack.push(bracket);
+                continue;
+            }
 
-            } else if (bracket.isClosed()) {
-                if (stack.isEmpty()) return false;
-                Bracket lastOpened = stack.pop();
-                if (!bracket.sameKindOf(lastOpened)) return false;
+            if (stack.isEmpty())
+                return false;
 
-            } else
-                throw new IllegalStateException("Invalid state, not opened nor closed bracket, for: " + bracket);
+            Bracket lastOpened = stack.pop();
+
+            if (!bracket.sameKindOf(lastOpened))
+                return false;
         }
         return stack.isEmpty();
     }
