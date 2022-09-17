@@ -1,6 +1,7 @@
 package phonenumber;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class PhoneNumber {
@@ -19,12 +20,8 @@ public class PhoneNumber {
     private List<String> combination(String s) {
         List<String> result = new ArrayList<>();
 
-        if (s.isEmpty())
-            return result;
-
-        if (s.length() == 1) {
-            for (Character ch : phone.charsOf(s.charAt(0)))
-                result.add(ch.toString());
+        if (s.isEmpty()) {
+            result.add("");
             return result;
         }
 
@@ -36,6 +33,7 @@ public class PhoneNumber {
     }
 
     public List<String> combinations() {
+        if (s.isEmpty()) return Collections.emptyList();
         return combination(s);
     }
 
