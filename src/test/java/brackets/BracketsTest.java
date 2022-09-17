@@ -30,8 +30,8 @@ public class BracketsTest {
     @Test
     void a_double_round_bracket_string_is_valid() {
         assertTrue(new Brackets("(())").isValid());
+        assertTrue(new Brackets(")())").isNotValid());
 //        assertTrue(new Brackets("((()").isNotValid());
-//        assertTrue(new Brackets(")(()").isNotValid());
     }
 //
     @Test
