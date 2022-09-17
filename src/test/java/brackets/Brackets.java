@@ -36,11 +36,13 @@ public class Brackets {
         if (s.isEmpty()) return true;
 
         Stack stack = new Stack(s.length());
+        Stack stack2 = new Stack(s.length()); // R S C
         for (char ch : s.toCharArray()) {
-            if (ch == '(' || ch == '[') {
+            if (isOpenedBracket(ch)) {
                 stack.push(ch);
+                stack2.push(kindOf(ch));
             }
-            else if (ch == ')' || ch == ']') {
+            else if (isClosedBracket(ch)) {
                 if (stack.isEmpty()) return false;
                 char lastOpened = stack.pop();
                 if (differentKind(lastOpened, ch)) return false;
@@ -50,9 +52,23 @@ public class Brackets {
         return stack.isEmpty();
     }
 
+    private boolean isClosedBracket(char ch) {
+        return ch == ')' || ch == ']' || ch == '}';
+    }
+
+    private boolean isOpenedBracket(char ch) {
+        return ch == '(' || ch == '[' || ch == '{';
+    }
+
+    private char kindOf(char ch) {
+        if (ch == '(' || ch == ')') return 'R';
+        if (ch == '[' || ch == ']') return 'S';
+        if (ch == '{' || ch == '}') return 'C';
+        throw new IllegalArgumentException("Invalid char: " + ch);
+    }
+
     private boolean differentKind(char lastOpened, char currentClosed) {
-        return (lastOpened == '[' && currentClosed == ')')
-                || (lastOpened == '(' && currentClosed == ']');
+        return kindOf(lastOpened) != kindOf(currentClosed);
     }
 
     public boolean isNotValid() {

@@ -59,4 +59,13 @@ public class BracketsTest {
         assertTrue(new Brackets("([)())").isNotValid());
         assertTrue(new Brackets("((()()])").isNotValid());
     }
+
+    @Test
+    void manage_curly_brackets() {
+        assertTrue(new Brackets("{").isNotValid());
+        assertTrue(new Brackets("{}").isValid());
+        assertTrue(new Brackets("({})").isValid());
+        assertTrue(new Brackets("(){}").isValid());
+        assertTrue(new Brackets("({)}").isNotValid());
+    }
 }
