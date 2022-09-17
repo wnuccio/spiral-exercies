@@ -16,8 +16,8 @@ public class Brackets {
             i = 0;
         }
 
-        public void push(char c) {
-            brackets[i] = c;
+        public void push(Bracket b) {
+            brackets[i] = b.toChar();
             i++;
         }
 
@@ -33,7 +33,11 @@ public class Brackets {
     }
 
     static class Bracket {
-        char ch;
+        private char ch;
+
+        char toChar() {
+            return ch;
+        }
 
         public Bracket(char ch) {
             this.ch = ch;
@@ -71,7 +75,7 @@ public class Brackets {
             Bracket bracket = new Bracket(ch);
 
             if (bracket.isOpened()) {
-                stack.push(ch);
+                stack.push(bracket);
             }
             else if (bracket.isClosed()) {
                 if (stack.isEmpty()) return false;
