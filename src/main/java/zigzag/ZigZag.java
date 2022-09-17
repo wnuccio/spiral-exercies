@@ -54,13 +54,10 @@ public class ZigZag {
      */
     private void moveOn() {
         if (numRows == 1) return;
-        down = (down && row < numRows-1) || (! down && row == 0);
-
-        if (down && row < numRows-1 || ! down && row == 0) {
-            row++;
-        } else {
-            row--;
-        }
+        boolean continueGoingDown = down && row < numRows - 1;
+        boolean switchToDown = !down && row == 0;
+        down = continueGoingDown || switchToDown;
+        if (down) row++; else row--;
     }
 
     public String convert() {
