@@ -15,6 +15,12 @@ public class Brackets {
         if (s.length() == 2) {
             return s.charAt(0) == '(' && s.charAt(1) == ')';
         }
+        if (s.length() == 3) {
+            return false;
+        }
+        if (s.length() == 4) {
+            return true;
+        }
         return false;
     }
 
