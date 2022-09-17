@@ -74,20 +74,19 @@ public class Brackets {
 
     public boolean isValid() {
         if (s.isEmpty()) return true;
-
         Stack stack = new Stack(s.length());
 
         for (Bracket bracket: toBracketList()) {
-
             if (bracket.isOpened()) {
                 stack.push(bracket);
-            }
-            else if (bracket.isClosed()) {
+
+            } else if (bracket.isClosed()) {
                 if (stack.isEmpty()) return false;
                 Bracket lastOpened = stack.pop();
                 if (! bracket.sameKindOf(lastOpened)) return false;
-            }
-            else throw new IllegalStateException("Invalid state, not opened nor closed bracket, for: " + bracket);
+
+            } else
+                throw new IllegalStateException("Invalid state, not opened nor closed bracket, for: " + bracket);
         }
         return stack.isEmpty();
     }
