@@ -40,7 +40,11 @@ public class Brackets {
             kind();
         }
 
-        public char kind() {
+        public boolean sameKindOf(Bracket bracket) {
+            return this.kind() == bracket.kind();
+        }
+
+        private char kind() {
             if (ch == '(' || ch == ')') return 'R';
             if (ch == '[' || ch == ']') return 'S';
             if (ch == '{' || ch == '}') return 'C';
@@ -72,7 +76,7 @@ public class Brackets {
             else if (bracket.isClosed()) {
                 if (stack.isEmpty()) return false;
                 char lastOpened = stack.pop();
-                if (new Bracket(lastOpened).kind() != bracket.kind()) return false;
+                if (! bracket.sameKindOf(new Bracket(lastOpened))) return false;
             }
             else throw new IllegalArgumentException("Invalid char: " + ch);
         }
