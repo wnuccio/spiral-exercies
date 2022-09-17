@@ -12,33 +12,31 @@ public class PhoneNumber {
     }
 
     /*
-        [a b c]
-        [c d e]
-        [e f g]
-
+       0 [a b c]
+       1 [c d e]
+       2 [e f g]
      */
+    private List<String> combination(String s) {
+        List<String> result = new ArrayList<>();
 
-    private List<String> combination(Character[] chars) {
-        List<String> list = new ArrayList<>();
-        for (char ch1 : chars)
-            list.add("" + ch1);
-        return list;
+        if (s.isEmpty())
+            return result;
+
+        if (s.length() == 1) {
+            for (Character ch : phone.charsOf(s.charAt(0)))
+                result.add(ch.toString());
+            return result;
+        }
+
+        List<String> subCombinations = combination(s.substring(1));
+        for (Character ch : phone.charsOf(s.charAt(0)))
+            for (String str : subCombinations)
+                result.add(ch + str);
+        return result;
     }
 
     public List<String> combinations() {
-        Character[] chars = s.isEmpty() ? new Character[]{} : phone.charsOf(s.charAt(0));
-        if (s.length() <= 1) return combination(chars);
-
-        List<String> list = new ArrayList<>();
-        Character[] chars1 = phone.charsOf(s.charAt(0));
-        Character[] chars2 = phone.charsOf(s.charAt(1));
-
-        for (char ch1 : chars1)
-            for (char ch2 : chars2) {
-                list.add("" + ch1 + ch2);
-            }
-
-        return list;
-
+        return combination(s);
     }
+
 }
