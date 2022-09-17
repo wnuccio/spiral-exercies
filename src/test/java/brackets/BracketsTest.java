@@ -30,10 +30,13 @@ public class BracketsTest {
     @Test
     void a_double_round_bracket_string_is_valid() {
         assertTrue(new Brackets("(())").isValid());
+        assertTrue(new Brackets("()()").isValid());
+        assertTrue(new Brackets("((()").isNotValid());
         assertTrue(new Brackets(")())").isNotValid());
-//        assertTrue(new Brackets("((()").isNotValid());
+        assertTrue(new Brackets(")()(").isNotValid());
+        assertTrue(new Brackets("))))").isNotValid());
     }
-//
+
     @Test
     void a_string_whose_length_is_odd_is_not_valid() {
         assertTrue(new Brackets("(").isNotValid());

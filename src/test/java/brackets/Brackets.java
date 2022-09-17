@@ -21,7 +21,13 @@ public class Brackets {
         }
         if (s.length() == 4) {
             if (s.charAt(0) != '(') return false;
-            return true;
+            int numOfOpenBrackets = 0;
+            for (char ch: s.toCharArray()) {
+                if (ch == '(') numOfOpenBrackets++;
+                else if (ch == ')') numOfOpenBrackets--;
+                else throw new IllegalArgumentException("Invalid char: " +ch);
+            }
+            return numOfOpenBrackets == 0;
         }
         return false;
     }
