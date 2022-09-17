@@ -80,7 +80,7 @@ public class Brackets {
                 Bracket lastOpened = stack.pop();
                 if (! bracket.sameKindOf(lastOpened)) return false;
             }
-            else throw new IllegalArgumentException("Invalid char: " + ch);
+            else throw new IllegalStateException("Invalid state, not opened nor closed bracket, for char: " + ch);
         }
         return stack.isEmpty();
     }
