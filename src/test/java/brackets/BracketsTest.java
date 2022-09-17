@@ -58,6 +58,5 @@ public class BracketsTest {
         assertTrue(new Brackets("((]())").isNotValid());
         assertTrue(new Brackets("([)())").isNotValid());
         assertTrue(new Brackets("((()()])").isNotValid());
-
     }
 }
