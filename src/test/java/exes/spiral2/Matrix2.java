@@ -1,6 +1,6 @@
-package spiral2;
+package exes.spiral2;
 
-import static spiral2.Matrix2.Direction.*;
+import static exes.spiral2.Matrix2.Direction.*;
 
 public class Matrix2 {
     private final int[][] values;

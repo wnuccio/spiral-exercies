@@ -1,4 +1,4 @@
-package zigzag;
+package exes.zigzag;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;

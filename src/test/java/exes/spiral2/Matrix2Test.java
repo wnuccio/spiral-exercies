@@ -1,4 +1,4 @@
-package spiral2;
+package exes.spiral2;
 
 import org.junit.jupiter.api.Test;
 

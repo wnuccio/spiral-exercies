@@ -1,4 +1,4 @@
-package zigzag;
+package exes.zigzag;
 
 import org.junit.jupiter.api.Test;
 

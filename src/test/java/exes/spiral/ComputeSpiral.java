@@ -1,9 +1,9 @@
-package spiral;
+package exes.spiral;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static spiral.ComputeSpiral.Direction.*;
+import static exes.spiral.ComputeSpiral.Direction.*;
 
 class ComputeSpiral {
     enum Direction {

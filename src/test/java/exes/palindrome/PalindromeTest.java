@@ -1,4 +1,4 @@
-package palindrome;
+package exes.palindrome;
 
 import org.junit.jupiter.api.Test;
 
