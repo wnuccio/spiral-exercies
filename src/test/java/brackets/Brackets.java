@@ -1,5 +1,8 @@
 package brackets;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Brackets {
     private final String s;
 
@@ -35,6 +38,11 @@ public class Brackets {
     static class Bracket {
         private char ch;
 
+        @Override
+        public String toString() {
+            return ""+ch;
+        }
+
         char toChar() {
             return ch;
         }
@@ -69,8 +77,7 @@ public class Brackets {
 
         Stack stack = new Stack(s.length());
 
-        for (char ch : s.toCharArray()) {
-            Bracket bracket = new Bracket(ch);
+        for (Bracket bracket: toBracketList()) {
 
             if (bracket.isOpened()) {
                 stack.push(bracket);
@@ -80,9 +87,18 @@ public class Brackets {
                 Bracket lastOpened = stack.pop();
                 if (! bracket.sameKindOf(lastOpened)) return false;
             }
-            else throw new IllegalStateException("Invalid state, not opened nor closed bracket, for char: " + ch);
+            else throw new IllegalStateException("Invalid state, not opened nor closed bracket, for: " + bracket);
         }
         return stack.isEmpty();
+    }
+
+    private List<Bracket> toBracketList() {
+        List<Bracket> brackets = new ArrayList<>();
+        for (char ch: s.toCharArray()) {
+            brackets.add(new Bracket(ch));
+        }
+
+        return brackets;
     }
 
     public boolean isNotValid() {
