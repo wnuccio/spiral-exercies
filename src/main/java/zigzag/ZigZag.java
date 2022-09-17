@@ -13,12 +13,12 @@ public class ZigZag {
         this.numRows = numRows;
     }
 
-    private class Row {
+    private static class Row {
         private final char[] chars;
         private int i;
 
-        Row() {
-            this.chars = new char[s.length()];
+        Row(int size) {
+            this.chars = new char[size];
             this.i = 0;
         }
 
@@ -40,7 +40,7 @@ public class ZigZag {
         row = 0;
         down = true;
         rows = new Row[numRows];
-        for (int i=0; i<rows.length; i++) rows[i] = new Row();
+        for (int i=0; i<rows.length; i++) rows[i] = new Row(s.length());
     }
 
     private void moveOn() {
