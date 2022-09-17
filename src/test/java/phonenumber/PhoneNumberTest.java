@@ -2,16 +2,14 @@ package phonenumber;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.Map;
+import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class PhoneNumberTest {
     @Test
     void the_map_returns_letters_for_any_digit() {
-        Map<Character, char[]> map = new PhoneNumber().map;
-        assertEquals('a', map.get('2')[0]);
-        assertEquals('b', map.get('2')[1]);
-        assertEquals('c', map.get('2')[2]);
+        assertTrue(Arrays.equals(new Phone().charsOf('2'), new char[]{'a', 'b', 'c'}));
+        assertTrue(Arrays.equals(new Phone().charsOf('3'), new char[]{'d', 'e', 'f'}));
     }
 }
