@@ -25,28 +25,33 @@ public class Brackets {
             return i==0;
         }
 
-        public void pop() {
+        public char pop() {
+            if (isEmpty()) throw new IllegalStateException();
             i--;
+            return brackets[i];
         }
     }
 
     public boolean isValid() {
         if (s.isEmpty()) return true;
-        if (s.charAt(0) != '(') return false;
 
         Stack stack = new Stack(s.length());
         for (char ch : s.toCharArray()) {
-            if (ch == '(') {
-                stack.push('(');
+            if (ch == '(' || ch == '[') {
+                stack.push(ch);
             }
-            else if (ch == ')') {
+            else if (ch == ')' || ch == ']') {
                 if (stack.isEmpty()) return false;
-                stack.pop();
+                char lastOpened = stack.pop();
+//                if (differentKind(ch, lastOpened)) return false;
             }
             else throw new IllegalArgumentException("Invalid char: " + ch);
         }
         return stack.isEmpty();
     }
+
+//    private boolean differentKind(char ch, char lastOpened) {
+//    }
 
     public boolean isNotValid() {
         return ! isValid();

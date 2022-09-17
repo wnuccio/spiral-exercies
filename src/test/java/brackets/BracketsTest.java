@@ -37,10 +37,10 @@ public class BracketsTest {
 
     @Test
     void a_couple_of_square_brackets_is_valid_or_not() {
-//        assertTrue(new Brackets("[]").isValid());
-//        assertTrue(new Brackets("]]").isNotValid());
-//        assertTrue(new Brackets("[[").isNotValid());
-//        assertTrue(new Brackets("][").isNotValid());
+        assertTrue(new Brackets("[]").isValid());
+        assertTrue(new Brackets("]]").isNotValid());
+        assertTrue(new Brackets("[[").isNotValid());
+        assertTrue(new Brackets("][").isNotValid());
     }
 
 
