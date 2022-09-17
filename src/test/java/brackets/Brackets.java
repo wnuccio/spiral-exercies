@@ -32,6 +32,23 @@ public class Brackets {
         }
     }
 
+    static class Bracket {
+        char ch;
+
+        public Bracket(char ch) {
+            this.ch = ch;
+            kind();
+        }
+
+        public char kind() {
+            if (ch == '(' || ch == ')') return 'R';
+            if (ch == '[' || ch == ']') return 'S';
+            if (ch == '{' || ch == '}') return 'C';
+            throw new IllegalArgumentException("Invalid char: " + ch);
+        }
+
+    }
+
     public boolean isValid() {
         if (s.isEmpty()) return true;
 
@@ -61,10 +78,7 @@ public class Brackets {
     }
 
     private char kindOfBracket(char ch) {
-        if (ch == '(' || ch == ')') return 'R';
-        if (ch == '[' || ch == ']') return 'S';
-        if (ch == '{' || ch == '}') return 'C';
-        throw new IllegalArgumentException("Invalid char: " + ch);
+        return new Bracket(ch).kind();
     }
 
     public boolean isNotValid() {
