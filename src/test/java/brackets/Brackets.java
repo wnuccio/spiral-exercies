@@ -43,15 +43,17 @@ public class Brackets {
             else if (ch == ')' || ch == ']') {
                 if (stack.isEmpty()) return false;
                 char lastOpened = stack.pop();
-//                if (differentKind(ch, lastOpened)) return false;
+                if (differentKind(lastOpened, ch)) return false;
             }
             else throw new IllegalArgumentException("Invalid char: " + ch);
         }
         return stack.isEmpty();
     }
 
-//    private boolean differentKind(char ch, char lastOpened) {
-//    }
+    private boolean differentKind(char lastOpened, char currentClosed) {
+        return (lastOpened == '[' && currentClosed == ')')
+                || (lastOpened == '(' && currentClosed == ']');
+    }
 
     public boolean isNotValid() {
         return ! isValid();

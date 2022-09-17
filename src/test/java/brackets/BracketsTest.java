@@ -43,5 +43,21 @@ public class BracketsTest {
         assertTrue(new Brackets("][").isNotValid());
     }
 
+    @Test
+    void a_mix_of_different_brackets_is_not_valid() {
+        assertTrue(new Brackets("(]").isNotValid());
+        assertTrue(new Brackets("[)").isNotValid());
+        assertTrue(new Brackets(")]").isNotValid());
+        assertTrue(new Brackets("([").isNotValid());
+    }
 
+    @Test
+    void is_valid_only_if_the_closed_bracket_does_match_the_last_opened() {
+        assertTrue(new Brackets("([])").isValid());
+        assertTrue(new Brackets("[()]").isValid());
+        assertTrue(new Brackets("((]())").isNotValid());
+        assertTrue(new Brackets("([)())").isNotValid());
+        assertTrue(new Brackets("((()()])").isNotValid());
+
+    }
 }
