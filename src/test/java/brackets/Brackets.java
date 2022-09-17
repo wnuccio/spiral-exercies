@@ -25,10 +25,10 @@ public class Brackets {
             return i==0;
         }
 
-        public char pop() {
+        public Bracket pop() {
             if (isEmpty()) throw new IllegalStateException();
             i--;
-            return brackets[i];
+            return new Bracket(brackets[i]);
         }
     }
 
@@ -62,8 +62,6 @@ public class Brackets {
         boolean isClosed() {
             return ch == ')' || ch == ']' || ch == '}';
         }
-
-
     }
 
     public boolean isValid() {
@@ -79,8 +77,8 @@ public class Brackets {
             }
             else if (bracket.isClosed()) {
                 if (stack.isEmpty()) return false;
-                char lastOpened = stack.pop();
-                if (! bracket.sameKindOf(new Bracket(lastOpened))) return false;
+                Bracket lastOpened = stack.pop();
+                if (! bracket.sameKindOf(lastOpened)) return false;
             }
             else throw new IllegalArgumentException("Invalid char: " + ch);
         }
