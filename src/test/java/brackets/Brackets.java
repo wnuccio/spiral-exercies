@@ -62,14 +62,12 @@ public class Brackets {
         if (s.isEmpty()) return true;
 
         Stack stack = new Stack(s.length());
-        Stack stack2 = new Stack(s.length()); 
-        
+
         for (char ch : s.toCharArray()) {
             Bracket bracket = new Bracket(ch);
 
             if (bracket.isOpened()) {
                 stack.push(ch);
-                stack2.push(bracket.kind());
             }
             else if (bracket.isClosed()) {
                 if (stack.isEmpty()) return false;
