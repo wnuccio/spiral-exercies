@@ -4,21 +4,21 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Phone {
-    private Map<Character, char[]> map;
+    private Map<Character, Character[]> map;
 
     public Phone() {
         this.map = new HashMap<>();
-        map.put('2', new char[]{'a', 'b', 'c'});
-        map.put('3', new char[]{'d', 'e', 'f'});
-        map.put('4', new char[]{'g', 'h', 'i'});
-        map.put('5', new char[]{'j', 'k', 'l'});
-        map.put('6', new char[]{'m', 'n', 'o'});
-        map.put('7', new char[]{'p', 'q', 'r', 's'});
-        map.put('8', new char[]{'t', 'u', 'v'});
-        map.put('9', new char[]{'w', 'x', 'y', 'z'});
+        map.put('2', new Character[]{'a', 'b', 'c'});
+        map.put('3', new Character[]{'d', 'e', 'f'});
+        map.put('4', new Character[]{'g', 'h', 'i'});
+        map.put('5', new Character[]{'j', 'k', 'l'});
+        map.put('6', new Character[]{'m', 'n', 'o'});
+        map.put('7', new Character[]{'p', 'q', 'r', 's'});
+        map.put('8', new Character[]{'t', 'u', 'v'});
+        map.put('9', new Character[]{'w', 'x', 'y', 'z'});
     }
 
-    public char[] charsOf(char c) {
+    public Character[] charsOf(char c) {
         return map.get(c);
     }
 }

@@ -4,12 +4,14 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PhoneNumberTest {
     @Test
-    void the_map_returns_letters_for_any_digit() {
-        assertTrue(Arrays.equals(new Phone().charsOf('2'), new char[]{'a', 'b', 'c'}));
-        assertTrue(Arrays.equals(new Phone().charsOf('3'), new char[]{'d', 'e', 'f'}));
+    void for_one_digit_string_returns_all_chars() {
+        assertEquals(Arrays.asList("a", "b", "c"), new PhoneNumber("2").combinations());
+        assertEquals(Arrays.asList("d", "e", "f"), new PhoneNumber("3").combinations());
+        assertEquals(Arrays.asList("g", "h", "i"), new PhoneNumber("4").combinations());
+        assertEquals(Arrays.asList("p", "q", "r", "s"), new PhoneNumber("7").combinations());
     }
 }
