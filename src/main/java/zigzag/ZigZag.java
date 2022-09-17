@@ -1,5 +1,6 @@
 package zigzag;
 
+import java.util.Arrays;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -15,7 +16,8 @@ public class ZigZag {
     private class Row {
         private final char[] chars;
         private int i;
-        public Row() {
+
+        Row() {
             this.chars = new char[s.length()];
             this.i = 0;
         }
@@ -26,9 +28,7 @@ public class ZigZag {
         }
 
         String asString() {
-            StringBuilder str = new StringBuilder();
-            for (int j=0; j<i; j++) str.append(chars[j]);
-            return str.toString();
+            return String.valueOf(Arrays.copyOf(chars, i));
         }
     }
 
