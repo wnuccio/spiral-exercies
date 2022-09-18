@@ -8,5 +8,13 @@ public class JumpTest {
     @Test
     void zero_jump_for_one_length_array() {
         assertEquals(0, Jump.jump(new int[]{1}));
+        assertEquals(0, Jump.jump(new int[]{2}));
+    }
+
+    @Test
+    void one_jump_for_two_length_array() {
+        assertEquals(1, Jump.jump(new int[]{1, 1}));
+        assertEquals(1, Jump.jump(new int[]{1, 2}));
+        assertEquals(1, Jump.jump(new int[]{2, 1}));
     }
 }
