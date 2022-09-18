@@ -29,4 +29,14 @@ public class JumpTest {
         assertEquals(1, Jump.jump(new int[]{2, 0, 0}));
         assertEquals(1, Jump.jump(new int[]{3, 1, 0}));
     }
+
+    @Test
+    void four_length_array() {
+        assertEquals(-1, Jump.jump(new int[]{0, 1, 1, 1}));
+        assertEquals(1, Jump.jump(new int[]{3, 1, 1, 1}));
+        assertEquals(2, Jump.jump(new int[]{2, 1, 1, 1}));
+        assertEquals(3, Jump.jump(new int[]{1, 1, 1, 1}));
+        assertEquals(2, Jump.jump(new int[]{1, 2, 1, 1}));
+        assertEquals(2, Jump.jump(new int[]{2, 1, 2, 1}));
+    }
 }
