@@ -21,7 +21,7 @@ public class Jump {
             return -1;
 
         int minRemainingJumps = -1;
-        for (int i = 1; i <= maxJumpLength; i++) {
+        for (int i = maxJumpLength; i >= 1; i--) {
             int nextJumps = minJumps(currentJumps, nums, currentIndex + i);
             if (nextJumps == -1)
                 continue;
