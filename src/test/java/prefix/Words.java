@@ -14,7 +14,7 @@ public class Words {
             int i=0;
             String result = "";
             boolean sameChar = true;
-            boolean endOfStrings = false;
+            boolean endOfStrings = i >= s[0].length();
             while(! endOfStrings && sameChar) {
                 char ch1 = s[0].charAt(i);
                 char ch2 = s[1].charAt(i);

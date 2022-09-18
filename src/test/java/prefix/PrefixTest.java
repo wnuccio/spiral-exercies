@@ -20,9 +20,19 @@ public class PrefixTest {
     }
 
     @Test
-    void common_prefix_of_btwo_words() {
+    void common_prefix_of_two_same_length_words() {
+        assertEquals("", new Words("", "").commonPrefix());
+        assertEquals("", new Words("a", "b").commonPrefix());
+        assertEquals("a", new Words("a", "a").commonPrefix());
+        assertEquals("a", new Words("ab", "ac").commonPrefix());
+        assertEquals("ab", new Words("ab", "ab").commonPrefix());
         assertEquals("a", new Words("abc", "ade").commonPrefix());
         assertEquals("ab", new Words("abc", "abe").commonPrefix());
         assertEquals("abc", new Words("abc", "abc").commonPrefix());
+    }
+
+    @Test
+    void common_prefix_of_two_different_length_words() {
+//        assertEquals("a", new Words("abc", "ade").commonPrefix());
     }
 }
