@@ -27,13 +27,10 @@ public class Words {
     public String commonPrefix() {
         int i = 0;
         String result = "";
-        boolean sameChar = true;
         boolean endOfStrings = endOfAnyWordReached(i, s);
-        while (!endOfStrings && sameChar) {
-            sameChar = sameCharAtIndex(i, s);
-            if (sameChar) {
-                result += s[0].charAt(i);
-            }
+        while (!endOfStrings) {
+            if ( !sameCharAtIndex(i, s)) return result;
+            result += s[0].charAt(i);
             i++;
             endOfStrings = endOfAnyWordReached(i, s);
         }
