@@ -6,9 +6,7 @@ public class Numbers {
         for (int i = 1; i< nums.length; i++) {
             int current = nums[i];
             int lastUnique = nums[k - 1];
-            if (current == lastUnique) {
-                continue;
-            } else {
+            if (current != lastUnique) {
                 nums[k] = nums[i];
                 k++;
             }
