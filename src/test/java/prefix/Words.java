@@ -1,11 +1,13 @@
 package prefix;
 
 public class Words {
-    public Words(String s) {
+    private String s;
 
+    public Words(String s) {
+        this.s = s;
     }
 
     public String commonPrefix() {
-        return "";
+        return s;
     }
 }
