@@ -33,6 +33,19 @@ public class PrefixTest {
 
     @Test
     void common_prefix_of_two_different_length_words() {
-//        assertEquals("a", new Words("abc", "ade").commonPrefix());
+        assertEquals("", new Words("", "a").commonPrefix());
+        assertEquals("", new Words("a", "").commonPrefix());
+
+        assertEquals("", new Words("a", "bc").commonPrefix());
+        assertEquals("a", new Words("a", "ab").commonPrefix());
+
+        assertEquals("", new Words("ab", "c").commonPrefix());
+        assertEquals("a", new Words("ab", "a").commonPrefix());
+
+        assertEquals("a", new Words("ab", "ade").commonPrefix());
+        assertEquals("ab", new Words("ab", "abe").commonPrefix());
+
+        assertEquals("a", new Words("abc", "ad").commonPrefix());
+        assertEquals("ab", new Words("abc", "ab").commonPrefix());
     }
 }
