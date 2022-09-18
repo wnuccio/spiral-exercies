@@ -8,13 +8,6 @@ public class Words {
         this.s = s;
     }
 
-    private boolean endOfAnyWordReached(int index, String[] words) {
-        for (String w : words) {
-            if (index >= w.length()) return true;
-        }
-        return false;
-    }
-
     private boolean sameCharAtIndex(int index, String[] words) {
         if (words.length == 1) return true;
 
@@ -30,13 +23,13 @@ public class Words {
     }
 
     public String commonPrefix() {
-        int i = 0;
         String result = "";
-        while (true) {
-            if (!sameCharAtIndex(i, s)) break;
-            if (i >= s[0].length()) break;
-            result += s[0].charAt(i);
-            i++;
+
+        boolean sameChar = true;
+        for (int i = 0; i < s[0].length() && sameChar; i++) {
+            sameChar = sameCharAtIndex(i, s);
+            if (sameChar)
+                result += s[0].charAt(i);
         }
         return result;
     }
