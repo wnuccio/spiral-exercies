@@ -26,5 +26,7 @@ public class JumpTest {
         assertEquals(2, Jump.jump(new int[]{1, 1, 1}));
         assertEquals(-1, Jump.jump(new int[]{1, 0, 1}));
         assertEquals(1, Jump.jump(new int[]{2, 0, 1}));
+        assertEquals(1, Jump.jump(new int[]{2, 0, 0}));
+        assertEquals(1, Jump.jump(new int[]{3, 1, 0}));
     }
 }
