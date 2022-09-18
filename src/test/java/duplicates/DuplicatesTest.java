@@ -63,6 +63,22 @@ public class DuplicatesTest {
         assertEqualNumbers(new int[]{100, 101}, nums, k);
     }
 
+    @Test
+    void three_numbers_last_two_equals() {
+        int[] nums = new int[]{100, 101, 101};
+        int k = Numbers.removeDuplicates(nums);
+
+        assertEqualNumbers(new int[]{100, 101}, nums, k);
+    }
+
+    @Test
+    void three_numbers_all_different() {
+        int[] nums = new int[]{100, 101, 102};
+        int k = Numbers.removeDuplicates(nums);
+
+        assertEqualNumbers(new int[]{100, 101, 102}, nums, k);
+    }
+
     private void assertEqualNumbers(int[] expected, int[] nums, int k) {
         assertEquals(expected.length, k);
         for (int i = 0; i < k; i++)
