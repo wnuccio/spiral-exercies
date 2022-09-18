@@ -8,15 +8,20 @@ public class InsertPosition {
     }
 
     /*
-            [2] start = 0; end = 1
+            [] start: 0  end: 0
+            [3] start: 0  end: 1
+
+            [1, 2, 3]
             target: 3
+
+            start = 0; end = 3; middle: 1 middleVal: 2
+            start = 2; end = 3; middle: 2 middleVal: 3
      */
     public static int search(int[] nums, int target, int start, int end) {
-        if (start >= end)
+        if (start == end)
             return start;
 
-        // start < end
-        int middle = (end - start) / 2;
+        int middle = (end + start) / 2;
 
         int middleVal = nums[middle];
 

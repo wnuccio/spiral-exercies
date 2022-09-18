@@ -24,4 +24,13 @@ public class InsertPositionTest {
         assertEquals(1, InsertPosition.search(new int[]{2, 3}, 3));
         assertEquals(2, InsertPosition.search(new int[]{2, 3}, 4));
     }
+
+    @Test
+    void position_in_a_three_length_array() {
+        assertEquals(0, InsertPosition.search(new int[]{1, 2, 3}, 0));
+        assertEquals(0, InsertPosition.search(new int[]{1, 2, 3}, 1));
+        assertEquals(1, InsertPosition.search(new int[]{1, 2, 3}, 2));
+        assertEquals(2, InsertPosition.search(new int[]{1, 2, 3}, 3));
+        assertEquals(3, InsertPosition.search(new int[]{1, 2, 3}, 4));
+    }
 }
