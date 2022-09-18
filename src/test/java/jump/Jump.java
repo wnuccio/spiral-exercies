@@ -22,13 +22,13 @@ public class Jump {
 
         int minRemainingJumps = -1;
         for (int i = 1; i <= maxJumpLength; i++) {
-            int nextCandidate = minJumps(currentJumps, nums, currentIndex + i);
-            if (nextCandidate == -1)
+            int nextJumps = minJumps(currentJumps, nums, currentIndex + i);
+            if (nextJumps == -1)
                 continue;
-            if (nextCandidate < minRemainingJumps || minRemainingJumps == -1)
-                minRemainingJumps = nextCandidate + 1;
+            if (nextJumps < minRemainingJumps || minRemainingJumps == -1)
+                minRemainingJumps = nextJumps;
         }
-        return (minRemainingJumps == -1) ? -1 : currentJumps + minRemainingJumps;
+        return (minRemainingJumps == -1) ? -1 : currentJumps + 1 + minRemainingJumps ;
     }
 
     public static int jump(int[] nums) {
