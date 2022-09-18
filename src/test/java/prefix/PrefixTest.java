@@ -18,4 +18,11 @@ public class PrefixTest {
         assertEquals("one", new Words("one", "one").commonPrefix());
         assertEquals("one", new Words("one", "one", "one").commonPrefix());
     }
+
+    @Test
+    void common_prefix_of_btwo_words() {
+        assertEquals("a", new Words("abc", "ade").commonPrefix());
+        assertEquals("ab", new Words("abc", "abe").commonPrefix());
+        assertEquals("abc", new Words("abc", "abc").commonPrefix());
+    }
 }
