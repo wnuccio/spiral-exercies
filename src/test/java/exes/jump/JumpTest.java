@@ -1,4 +1,4 @@
-package jump;
+package exes.jump;
 
 import org.junit.jupiter.api.Test;
 

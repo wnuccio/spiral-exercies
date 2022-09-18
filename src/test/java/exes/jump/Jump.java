@@ -1,4 +1,4 @@
-package jump;
+package exes.jump;
 
 /*
     [1, 1, 1]
