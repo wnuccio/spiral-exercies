@@ -54,6 +54,62 @@ public class RemovalTest {
         assertEqualNumbers(new int[]{}, numbers,length);
     }
 
+    @Test
+    void no_removal_on_three_numbers() {
+        int[] numbers = new int[]{3, 4, 5};
+        int length = Numbers.remove(numbers, 1);
+        assertEqualNumbers(new int[]{3, 4, 5}, numbers,length);
+    }
+
+    @Test
+    void one_removal_on_three_numbers_first() {
+        int[] numbers = new int[]{3, 4, 5};
+        int length = Numbers.remove(numbers, 3);
+        assertEqualNumbers(new int[]{4, 5}, numbers,length);
+    }
+
+    @Test
+    void one_removal_on_three_numbers_middle() {
+        int[] numbers = new int[]{3, 4, 5};
+        int length = Numbers.remove(numbers, 4);
+        assertEqualNumbers(new int[]{3, 5}, numbers,length);
+    }
+
+    @Test
+    void one_removal_on_three_numbers_last() {
+        int[] numbers = new int[]{3, 4, 5};
+        int length = Numbers.remove(numbers, 5);
+        assertEqualNumbers(new int[]{3, 4}, numbers,length);
+    }
+
+    @Test
+    void two_removal_on_three_numbers_first() {
+        int[] numbers = new int[]{3, 3, 5};
+        int length = Numbers.remove(numbers, 3);
+        assertEqualNumbers(new int[]{5}, numbers,length);
+    }
+
+    @Test
+    void two_removal_on_three_numbers_last() {
+        int[] numbers = new int[]{3, 5, 5};
+        int length = Numbers.remove(numbers, 5);
+        assertEqualNumbers(new int[]{3}, numbers,length);
+    }
+
+    @Test
+    void two_removal_on_three_numbers_first_last() {
+        int[] numbers = new int[]{3, 5, 3};
+        int length = Numbers.remove(numbers, 3);
+        assertEqualNumbers(new int[]{5}, numbers,length);
+    }
+
+    @Test
+    void three_removal_on_three_numbers() {
+        int[] numbers = new int[]{3, 3, 3};
+        int length = Numbers.remove(numbers, 3);
+        assertEqualNumbers(new int[]{}, numbers,length);
+    }
+
 
     private void assertEqualNumbers(int[] expected, int[] nums, int length) {
         assertEquals(expected.length, length);
