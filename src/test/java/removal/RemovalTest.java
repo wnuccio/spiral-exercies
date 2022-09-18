@@ -110,6 +110,12 @@ public class RemovalTest {
         assertEqualNumbers(new int[]{}, numbers,length);
     }
 
+    @Test
+    void removal_on_four_numbers() {
+        int[] numbers = new int[]{4, 3, 4, 4, 3, 4};
+        int length = Numbers.remove(numbers, 4);
+        assertEqualNumbers(new int[]{3, 3}, numbers,length);
+    }
 
     private void assertEqualNumbers(int[] expected, int[] nums, int length) {
         assertEquals(expected.length, length);
