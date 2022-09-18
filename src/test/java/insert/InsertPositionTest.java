@@ -9,4 +9,11 @@ public class InsertPositionTest {
     void position_in_an_empty_array_is_zero() {
         assertEquals(0, InsertPosition.search(new int[]{}, 8));
     }
+
+    @Test
+    void position_in_a_one_length_array() {
+        assertEquals(0, InsertPosition.search(new int[]{2}, 1));
+        assertEquals(0, InsertPosition.search(new int[]{2}, 2));
+        assertEquals(1, InsertPosition.search(new int[]{2}, 3));
+    }
 }
