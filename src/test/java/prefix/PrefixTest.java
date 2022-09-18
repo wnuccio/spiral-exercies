@@ -12,4 +12,10 @@ public class PrefixTest {
         assertEquals("h", new Words("h").commonPrefix());
         assertEquals("house", new Words("house").commonPrefix());
     }
+
+    @Test
+    void common_prefix_of_more_equals_word_is_the_word() {
+        assertEquals("one", new Words("one", "one").commonPrefix());
+        assertEquals("one", new Words("one", "one", "one").commonPrefix());
+    }
 }
