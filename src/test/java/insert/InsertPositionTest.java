@@ -18,9 +18,10 @@ public class InsertPositionTest {
     }
 
     @Test
-    void position_in_a_long_array() {
-//        assertEquals(2, InsertPosition.search(new int[]{1, 2, 3, 4, 5}, 3));
-//        assertEquals(0, InsertPosition.search(new int[]{2, 3}, 2));
-//        assertEquals(1, InsertPosition.search(new int[]{2, 3}, 3));
+    void position_in_a_two_length_array() {
+        assertEquals(0, InsertPosition.search(new int[]{2, 3}, 1));
+        assertEquals(0, InsertPosition.search(new int[]{2, 3}, 2));
+        assertEquals(1, InsertPosition.search(new int[]{2, 3}, 3));
+        assertEquals(2, InsertPosition.search(new int[]{2, 3}, 4));
     }
 }
