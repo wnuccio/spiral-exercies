@@ -48,4 +48,11 @@ public class PrefixTest {
         assertEquals("a", new Words("abc", "ad").commonPrefix());
         assertEquals("ab", new Words("abc", "ab").commonPrefix());
     }
+
+    @Test
+    void prefix_for_three_words() {
+        assertEquals("", new Words("a", "b", "c").commonPrefix());
+        assertEquals("", new Words("a", "a", "c").commonPrefix());
+        assertEquals("ab", new Words("abi", "abccc", "abee").commonPrefix());
+    }
 }

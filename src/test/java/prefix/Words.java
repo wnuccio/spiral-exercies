@@ -7,34 +7,36 @@ public class Words {
         this.s = s;
     }
 
-    private boolean endOfAnyWordReached(int index, String s1, String s2) {
-        return index >= s1.length() || index >= s2.length();
-    }
-
-    private boolean sameCharAtIndex(int index, String s1, String s2) {
-        char ch1 = s1.charAt(index);
-        char ch2 = s2.charAt(index);
-        return ch1 == ch2;
-    }
-
-    // abc
-    // ad
-    public String commonPrefix() {
-        if (s.length == 2) {
-            int i=0;
-            String result = "";
-            boolean sameChar = true;
-            boolean endOfStrings = endOfAnyWordReached(i, s[0], s[1]);
-            while(! endOfStrings && sameChar) {
-                sameChar = sameCharAtIndex(i, s[0], s[1]);
-                if (sameChar) {
-                    result += s[0].charAt(i);
-                }
-                i++;
-                endOfStrings = endOfAnyWordReached(i, s[0], s[1]);
-            }
-            return result;
+    private boolean endOfAnyWordReached(int index, String[] words) {
+        for (String w : words) {
+            if (index >= w.length()) return true;
         }
-        return s[0];
+        return false;
+    }
+
+    private boolean sameCharAtIndex(int index, String[] words) {
+        if (words.length <= 1) return true;
+        for (int wordIndex = 0; wordIndex < words.length - 1; wordIndex++) {
+            String word = words[wordIndex];
+            String nextWord = words[wordIndex + 1];
+            if (word.charAt(index) != nextWord.charAt(index)) return false;
+        }
+        return true;
+    }
+
+    public String commonPrefix() {
+        int i = 0;
+        String result = "";
+        boolean sameChar = true;
+        boolean endOfStrings = endOfAnyWordReached(i, s);
+        while (!endOfStrings && sameChar) {
+            sameChar = sameCharAtIndex(i, s);
+            if (sameChar) {
+                result += s[0].charAt(i);
+            }
+            i++;
+            endOfStrings = endOfAnyWordReached(i, s);
+        }
+        return result;
     }
 }
