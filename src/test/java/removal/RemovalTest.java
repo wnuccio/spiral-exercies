@@ -26,6 +26,35 @@ public class RemovalTest {
         assertEqualNumbers(new int[]{}, numbers,length);
     }
 
+    @Test
+    void no_removal_in_two_numbers_array() {
+        int[] numbers = new int[]{3, 4};
+        int length = Numbers.remove(numbers, 1);
+        assertEqualNumbers(new int[]{3, 4}, numbers,length);
+    }
+
+    @Test
+    void one_removal_of_first_of_two_numbers() {
+        int[] numbers = new int[]{3, 4};
+        int length = Numbers.remove(numbers, 3);
+        assertEqualNumbers(new int[]{4}, numbers,length);
+    }
+
+    @Test
+    void one_removal_of_second_of_two_numbers() {
+        int[] numbers = new int[]{3, 4};
+        int length = Numbers.remove(numbers, 4);
+        assertEqualNumbers(new int[]{3}, numbers,length);
+    }
+
+    @Test
+    void one_removal_of_both_of_two_numbers() {
+        int[] numbers = new int[]{4, 4};
+        int length = Numbers.remove(numbers, 4);
+        assertEqualNumbers(new int[]{}, numbers,length);
+    }
+
+
     private void assertEqualNumbers(int[] expected, int[] nums, int length) {
         assertEquals(expected.length, length);
         for (int i = 0; i < length; i++)
