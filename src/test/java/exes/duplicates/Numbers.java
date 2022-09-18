@@ -1,4 +1,4 @@
-package duplicates;
+package exes.duplicates;
 
 public class Numbers {
     public static int removeDuplicates(int[] nums) {

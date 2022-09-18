@@ -1,4 +1,4 @@
-package prefix;
+package exes.prefix;
 
 public class Words {
     private final String[] words;

@@ -1,4 +1,4 @@
-package brackets;
+package exes.brackets;
 
 import org.junit.jupiter.api.Test;
 

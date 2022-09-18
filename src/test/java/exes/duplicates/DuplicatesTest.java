@@ -1,4 +1,4 @@
-package duplicates;
+package exes.duplicates;
 
 import org.junit.jupiter.api.Test;
 

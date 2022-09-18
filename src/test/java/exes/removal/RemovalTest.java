@@ -1,4 +1,4 @@
-package removal;
+package exes.removal;
 
 import org.junit.jupiter.api.Test;
 

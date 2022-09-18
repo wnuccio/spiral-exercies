@@ -1,4 +1,4 @@
-package prefix;
+package exes.prefix;
 
 import org.junit.jupiter.api.Test;
 
