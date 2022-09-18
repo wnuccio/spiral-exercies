@@ -19,6 +19,13 @@ public class RemovalTest {
         assertEqualNumbers(new int[]{3}, numbers,length);
     }
 
+    @Test
+    void one_removal_in_one_number_array() {
+        int[] numbers = new int[]{3};
+        int length = Numbers.remove(numbers, 3);
+        assertEqualNumbers(new int[]{}, numbers,length);
+    }
+
     private void assertEqualNumbers(int[] expected, int[] nums, int length) {
         assertEquals(expected.length, length);
         for (int i = 0; i < length; i++)
