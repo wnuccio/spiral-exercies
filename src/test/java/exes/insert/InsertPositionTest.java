@@ -1,4 +1,4 @@
-package insert;
+package exes.insert;
 
 import org.junit.jupiter.api.Test;
 
