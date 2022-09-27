@@ -18,7 +18,7 @@ public class SpendingNotifier {
 //            }
 //        }
 
-        mail = new Mail(payments.findExceedings());
+        mail = new Mail(payments.findHighest());
 
         if (mail.hasAtLeastOnePayment())
             mailSender.sendMail(mail);

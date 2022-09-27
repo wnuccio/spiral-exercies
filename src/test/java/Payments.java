@@ -22,26 +22,26 @@ class Payments {
     }
 
     boolean isCurrPaymentTooHighFor(Category category) {
-        Payment totalLastPayment = totalPayment(lastMonthPayment, category);
+        Payment totalLastPayment = total(lastMonthPayment, category);
         return totalCurrentPaymentFor(category).muchGreaterThan(totalLastPayment);
     }
 
-    private Payment totalPayment(List<Payment> paymentList, Category category) {
+    private Payment total(List<Payment> paymentList, Category category) {
         return paymentList.stream()
                 .filter(payment -> payment.category().equals(category))
                 .reduce(new Payment(0, category), Payment::plus);
     }
 
-    public List<Payment> findExceedings() {
+    public List<Payment> findHighest() {
         return currentMonthPayment.stream()
                 .collect(groupingBy(Payment::category))
                 .entrySet().stream()
-                .map(entry -> totalPayment(entry.getValue().stream().collect(Collectors.toList()), entry.getKey()))
-                .filter(payment -> payment.muchGreaterThan(totalPayment(lastMonthPayment, payment.category())))
+                .map(entry -> total(entry.getValue().stream().collect(Collectors.toList()), entry.getKey()))
+                .filter(payment -> payment.muchGreaterThan(total(lastMonthPayment, payment.category())))
                 .collect(Collectors.toList());
     }
 
     public Payment totalCurrentPaymentFor(Category category) {
-        return totalPayment(currentMonthPayment, category);
+        return total(currentMonthPayment, category);
     }
 }
