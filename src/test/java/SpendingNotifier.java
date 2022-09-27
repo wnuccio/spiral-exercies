@@ -10,8 +10,8 @@ public class SpendingNotifier {
     public void notifyUnusualSpendingFor(String user) {
         Payments payments = paymentFetcher.fetchPaymentsFor(user);
 
-        if (payments.isCurrPaymentTooHigh()) {
-            sendMailForPayment(user, payments.totalCurrentPayment());
+        if (payments.isCurrPaymentTooHigh(Category.ENTERTAINMENT)) {
+            sendMailForPayment(user, payments.totalCurrentPayment(Category.ENTERTAINMENT));
         }
     }
 

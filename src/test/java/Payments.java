@@ -18,22 +18,19 @@ class Payments {
         return new Payments();
     }
 
-    boolean isCurrPaymentTooHigh() {
-        Payment totalLastPayment = totalPayment(lastMonthPayment);
-        return totalCurrentPayment().muchGreaterThan(totalLastPayment);
+    boolean isCurrPaymentTooHigh(Category category) {
+        Payment totalLastPayment = totalPayment(lastMonthPayment, category);
+        return totalCurrentPayment(category).muchGreaterThan(totalLastPayment);
     }
 
-    private Payment totalPayment(List<Payment> paymentList) {
-        if (paymentList.isEmpty())
-            return new Payment(0, Category.ENTERTAINMENT);
-
-        if (paymentList.size() == 1)
-            return paymentList.get(0);
-
-        return paymentList.get(0).plus(paymentList.get(1));
+    private Payment totalPayment(List<Payment> paymentList, Category category) {
+        return paymentList.stream()
+                .filter(payment -> payment.category().equals(category))
+                .reduce(Payment::plus)
+                .orElse(new Payment(0, category));
     }
 
-    public Payment totalCurrentPayment() {
-        return totalPayment(currentMonthPayment);
+    public Payment totalCurrentPayment(Category category) {
+        return totalPayment(currentMonthPayment, category);
     }
 }

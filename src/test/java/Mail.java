@@ -1,12 +1,21 @@
 public class Mail {
-    private String user;
-    private String price;
-    private Category category;
+    private final String user;
+    private final String price;
+    private final Category category;
 
     public Mail(String user, String price, Category category) {
         this.user = user;
         this.price = price;
         this.category = category;
+    }
+
+    @Override
+    public String toString() {
+        return "Mail{" +
+                "user='" + user + '\'' +
+                ", price='" + price + '\'' +
+                ", category=" + category +
+                '}';
     }
 
     public String text() {

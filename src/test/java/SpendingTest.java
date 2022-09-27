@@ -140,8 +140,8 @@ public class SpendingTest {
         mailSender.verifyNoMailSent();
     }
 
-//    @Test
-    void send_no_mail_when_payments_are_about_different_categories() {
+    @Test
+    void send_mail_taking_into_account_categories() {
         List<Payment> currentMonthPayments = List.of(new Payment(20, Category.ENTERTAINMENT));
         List<Payment> lastMonthPayments = List.of(new Payment(10, Category.RESTAURANTS));
         paymentFetcher.returnSpendings("user1", currentMonthPayments, lastMonthPayments);
@@ -149,6 +149,6 @@ public class SpendingTest {
         SpendingNotifier spendingNotifier = new SpendingNotifier(paymentFetcher, mailSender);
         spendingNotifier.notifyUnusualSpendingFor("user1");
 
-        mailSender.verifyNoMailSent();
+        mailSender.verifyMailSent("user1", "20", "entertainment");
     }
 }
