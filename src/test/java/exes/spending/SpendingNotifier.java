@@ -12,7 +12,7 @@ public class SpendingNotifier {
     public void notifyUnusualSpendingFor(String user) {
         Payments payments = paymentFetcher.fetchPaymentsFor(user);
 
-        Mail mail = new Mail();
+        Mail mail;
 
 //        for (exes.spending.Category category: exes.spending.Category.values()) {
 //            if (payments.isCurrPaymentTooHighFor(category)) {
@@ -20,7 +20,7 @@ public class SpendingNotifier {
 //            }
 //        }
 
-        mail = new Mail(payments.findHighest());
+        mail = new Mail(payments.findUnusuallyHighPaymentsForEachCategory());
 
         if (mail.hasAtLeastOnePayment())
             mailSender.sendMail(mail);

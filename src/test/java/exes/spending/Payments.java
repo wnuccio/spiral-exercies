@@ -25,7 +25,7 @@ class Payments {
 
     boolean isCurrPaymentTooHighFor(Category category) {
         Payment totalLastPayment = total(lastMonthPayment, category);
-        return totalCurrentPaymentFor(category).muchGreaterThan(totalLastPayment);
+        return totalCurrentPaymentFor(category).atLeast50percentMoreThan(totalLastPayment);
     }
 
     private Payment total(List<Payment> paymentList, Category category) {
@@ -34,12 +34,12 @@ class Payments {
                 .reduce(new Payment(0, category), Payment::plus);
     }
 
-    public List<Payment> findHighest() {
+    public List<Payment> findUnusuallyHighPaymentsForEachCategory() {
         return currentMonthPayment.stream()
                 .collect(groupingBy(Payment::category))
                 .entrySet().stream()
-                .map(entry -> total(entry.getValue().stream().collect(Collectors.toList()), entry.getKey()))
-                .filter(payment -> payment.muchGreaterThan(total(lastMonthPayment, payment.category())))
+                .map(entry -> total(entry.getValue(), entry.getKey()))
+                .filter(payment -> payment.atLeast50percentMoreThan(total(lastMonthPayment, payment.category())))
                 .collect(Collectors.toList());
     }
 

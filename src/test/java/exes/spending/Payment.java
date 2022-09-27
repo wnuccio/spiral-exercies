@@ -31,7 +31,7 @@ class Payment {
         return new Payment(this.price + other.price, this.category);
     }
 
-    public boolean muchGreaterThan(Payment other) {
+    public boolean atLeast50percentMoreThan(Payment other) {
         return (this.price() > other.price() * 1.5);
 
     }
