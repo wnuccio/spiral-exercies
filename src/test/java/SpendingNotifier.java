@@ -11,12 +11,11 @@ public class SpendingNotifier {
         Payments payments = paymentFetcher.fetchPaymentsFor(user);
 
         Mail mail = new Mail();
-        if (payments.isCurrPaymentTooHigh(Category.ENTERTAINMENT)) {
-            mail.add(payments.totalCurrentPayment(Category.ENTERTAINMENT));
-        }
 
-        if (payments.isCurrPaymentTooHigh(Category.RESTAURANTS)) {
-            mail.add(payments.totalCurrentPayment(Category.RESTAURANTS));
+        for (Category category: Category.values()) {
+            if (payments.isCurrPaymentTooHighFor(category)) {
+                mail.add(payments.totalCurrentPayment(category));
+            }
         }
 
         if (mail.hasAtLeastOnePayment())

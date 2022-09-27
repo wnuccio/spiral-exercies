@@ -18,7 +18,7 @@ class Payments {
         return new Payments();
     }
 
-    boolean isCurrPaymentTooHigh(Category category) {
+    boolean isCurrPaymentTooHighFor(Category category) {
         Payment totalLastPayment = totalPayment(lastMonthPayment, category);
         return totalCurrentPayment(category).muchGreaterThan(totalLastPayment);
     }
