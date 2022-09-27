@@ -17,7 +17,8 @@ public class SpendingNotifier {
 
     private void sendMailForPayment(String user, Payment payment) {
         String price = String.valueOf(payment.price());
-        mailSender.sendMail(user, price, payment.category());
+        Mail mail = new Mail(user, price, payment.category());
+        mailSender.sendMail(mail);
 
     }
 }

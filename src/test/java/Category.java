@@ -1,3 +1,3 @@
 public enum Category {
-    ENTERTAINMENT
+    RESTAURANTS, ENTERTAINMENT
 }

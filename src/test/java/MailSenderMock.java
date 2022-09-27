@@ -1,7 +1,6 @@
-import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 class PaymentFetcherStub implements PaymentFetcher {
@@ -25,20 +24,20 @@ class PaymentFetcherStub implements PaymentFetcher {
 }
 
 class MailSenderMock implements MailSender {
-    private final List<Mail> mails = new ArrayList<>();
+    private Mail mail = null;
 
     @Override
-    public void sendMail(String user, String price, Category category) {
-        mails.add(new Mail(user, price, category));
+    public void sendMail(Mail mail) {
+        this.mail = mail;
     }
 
     public void verifyNoMailSent() {
-        assertEquals(0, mails.size());
+        assertNull(mail);
     }
 
     public void verifyMailSent(String user, String price, String category) {
-        assertEquals(1, mails.size());
-        assertEquals(true, mails.get(0).text().contains(price));
-        assertEquals(true, mails.get(0).text().contains(category));
+        assertNotNull(mail);
+        assertEquals(true, mail.text().contains(price));
+        assertEquals(true, mail.text().contains(category));
     }
 }
