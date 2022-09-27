@@ -57,4 +57,18 @@ public class SpendingTest {
 
         mailSender.verifyMailSent("user1", "10", "entertainment");
     }
+
+    @Test
+    void send_no_mail_for_an_unknown_user() {
+        List<Payment> currentMonthPayments = Arrays.asList(
+                new Payment(10, Category.ENTERTAINMENT)
+        );
+
+        paymentFetcher.returnSpendings("user1", currentMonthPayments, Collections.emptyList());
+
+        SpendingNotifier spendingNotifier = new SpendingNotifier(paymentFetcher, mailSender);
+        spendingNotifier.notifyUnusualSpendingFor("user2");
+
+        mailSender.verifyNoMailSent();
+    }
 }

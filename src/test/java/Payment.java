@@ -1,3 +1,4 @@
+import java.util.Collections;
 import java.util.List;
 
 class Payment {
@@ -25,5 +26,13 @@ class Payments {
     public Payments(List<Payment> currentMonthPayment, List<Payment> lastMonthPayment) {
         this.currentMonthPayment = currentMonthPayment;
         this.lastMonthPayment = lastMonthPayment;
+    }
+
+    public Payments() {
+        this(Collections.emptyList(), Collections.emptyList());
+    }
+
+    public static Payments noPayments() {
+        return new Payments();
     }
 }
