@@ -14,7 +14,7 @@ public class SpendingNotifier {
 
         for (Category category: Category.values()) {
             if (payments.isCurrPaymentTooHighFor(category)) {
-                mail.add(payments.totalCurrentPayment(category));
+                mail.add(payments.totalCurrentPaymentFor(category));
             }
         }
 

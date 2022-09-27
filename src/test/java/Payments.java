@@ -20,7 +20,7 @@ class Payments {
 
     boolean isCurrPaymentTooHighFor(Category category) {
         Payment totalLastPayment = totalPayment(lastMonthPayment, category);
-        return totalCurrentPayment(category).muchGreaterThan(totalLastPayment);
+        return totalCurrentPaymentFor(category).muchGreaterThan(totalLastPayment);
     }
 
     private Payment totalPayment(List<Payment> paymentList, Category category) {
@@ -30,7 +30,7 @@ class Payments {
                 .orElse(new Payment(0, category));
     }
 
-    public Payment totalCurrentPayment(Category category) {
+    public Payment totalCurrentPaymentFor(Category category) {
         return totalPayment(currentMonthPayment, category);
     }
 }
