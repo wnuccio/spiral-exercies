@@ -11,7 +11,7 @@ public class SpendingNotifier {
         Payments payments = paymentFetcher.fetchPaymentsFor(user);
 
         if (payments.isCurrPaymentTooHigh()) {
-            sendMailForPayment(user, payments.currentMonthPayment.get(0));
+            sendMailForPayment(user, payments.totalCurrentPayment());
         }
     }
 

@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 class PaymentFetcherStub implements PaymentFetcher {
-    private String user;
-    private List<Payment> currentMonthPayments;
-    private List<Payment> prevMonthPayments;
+    private String user = "";
+    private List<Payment> currentMonthPayments = List.of();
+    private List<Payment> prevMonthPayments = List.of();
 
     @Override
     public Payments fetchPaymentsFor(String user) {
@@ -25,10 +25,7 @@ class PaymentFetcherStub implements PaymentFetcher {
 }
 
 class MailSenderMock implements MailSender {
-
-
-    private List<Mail> mails = new ArrayList<>();
-
+    private final List<Mail> mails = new ArrayList<>();
 
     @Override
     public void sendMail(String user, String price, Category category) {
