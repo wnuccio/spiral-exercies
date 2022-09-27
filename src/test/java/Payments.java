@@ -29,8 +29,7 @@ class Payments {
     private Payment totalPayment(List<Payment> paymentList, Category category) {
         return paymentList.stream()
                 .filter(payment -> payment.category().equals(category))
-                .reduce(Payment::plus)
-                .orElse(new Payment(0, category));
+                .reduce(new Payment(0, category), Payment::plus);
     }
 
     public List<Payment> findExceedings() {
