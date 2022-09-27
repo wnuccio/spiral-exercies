@@ -1,3 +1,5 @@
+package exes.spending;
+
 public class SpendingNotifier {
     private final PaymentFetcherStub paymentFetcher;
     private final MailSender mailSender;
@@ -12,7 +14,7 @@ public class SpendingNotifier {
 
         Mail mail = new Mail();
 
-//        for (Category category: Category.values()) {
+//        for (exes.spending.Category category: exes.spending.Category.values()) {
 //            if (payments.isCurrPaymentTooHighFor(category)) {
 //                mail.add(payments.totalCurrentPaymentFor(category));
 //            }

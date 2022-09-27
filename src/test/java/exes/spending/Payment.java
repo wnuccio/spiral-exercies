@@ -1,3 +1,5 @@
+package exes.spending;
+
 class Payment {
     private final int price;
     private final Category category;
@@ -17,7 +19,7 @@ class Payment {
 
     @Override
     public String toString() {
-        return "Payment{" +
+        return "exes.spending.Payment{" +
                 "price=" + price +
                 ", category=" + category +
                 '}';

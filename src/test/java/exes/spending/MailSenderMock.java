@@ -1,3 +1,5 @@
+package exes.spending;
+
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
