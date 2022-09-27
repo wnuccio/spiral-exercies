@@ -9,23 +9,9 @@ public class SpendingNotifier {
 
     public void notifyUnusualSpendingFor(String user) {
         Payments payments = paymentFetcher.fetchPaymentsFor(user);
-        if (payments.currentMonthPayment.isEmpty())
-            return;
 
-
-        if (payments.lastMonthPayment.isEmpty()) {
-            Payment currPayment = payments.currentMonthPayment.get(0);
-            sendMailForPayment(user, currPayment);
-            return;
-        }
-
-        Payment currPayment = payments.currentMonthPayment.get(0);
-        Payment lastPayment = payments.lastMonthPayment.get(0);
-        int currPrice = currPayment.price();
-        int lastPrice = lastPayment.price();
-        double lastPriceThreshold = lastPrice * 1.5;
-        if (currPrice > lastPriceThreshold) {
-            sendMailForPayment(user, currPayment);
+        if (payments.isCurrPaymentTooHigh()) {
+            sendMailForPayment(user, payments.currentMonthPayment.get(0));
         }
     }
 

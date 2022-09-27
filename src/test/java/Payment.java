@@ -2,8 +2,8 @@ import java.util.Collections;
 import java.util.List;
 
 class Payment {
-    private int price;
-    private Category category;
+    private final int price;
+    private final Category category;
 
     public Payment(int price, Category category) {
         this.price = price;
@@ -34,5 +34,20 @@ class Payments {
 
     public static Payments noPayments() {
         return new Payments();
+    }
+
+    boolean isCurrPaymentTooHigh() {
+        if (currentMonthPayment.isEmpty())
+            return false;
+
+        if (lastMonthPayment.isEmpty())
+            return true;
+
+        Payment currPayment = currentMonthPayment.get(0);
+        Payment lastPayment = lastMonthPayment.get(0);
+        int currPrice = currPayment.price();
+        int lastPrice = lastPayment.price();
+        double lastPriceThreshold = lastPrice * 1.5;
+        return (currPrice > lastPriceThreshold);
     }
 }
