@@ -1,6 +1,5 @@
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
 import java.util.List;
 
 import static java.util.Collections.emptyList;
@@ -33,29 +32,8 @@ public class SpendingTest {
     PaymentFetcherStub paymentFetcher = new PaymentFetcherStub();
 
     @Test
-    void send_no_mail_for_no_spending() {
-        paymentFetcher.returnSpendings("user1", emptyList(), emptyList());
-
-        SpendingNotifier spendingNotifier = new SpendingNotifier(paymentFetcher, mailSender);
-        spendingNotifier.notifyUnusualSpendingFor("user1");
-
-        mailSender.verifyNoMailSent();
-    }
-
-    @Test
-    void send_mail_on_unusual_spending_in_entertainment() {
-        List<Payment> currentMonthPayments = Arrays.asList(new Payment(10, Category.ENTERTAINMENT));
-        paymentFetcher.returnSpendings("user1", currentMonthPayments, emptyList());
-
-        SpendingNotifier spendingNotifier = new SpendingNotifier(paymentFetcher, mailSender);
-        spendingNotifier.notifyUnusualSpendingFor("user1");
-
-        mailSender.verifyMailSent("user1", "10", "entertainment");
-    }
-
-    @Test
     void send_no_mail_for_an_unknown_user() {
-        List<Payment> currentMonthPayments = Arrays.asList(new Payment(10, Category.ENTERTAINMENT));
+        List<Payment> currentMonthPayments = List.of(new Payment(10, Category.ENTERTAINMENT));
 
         paymentFetcher.returnSpendings("user1", currentMonthPayments, emptyList());
 
@@ -66,11 +44,8 @@ public class SpendingTest {
     }
 
     @Test
-    void send_no_mail_if_spending_in_entertainment_does_not_exceed_threshold() {
-        List<Payment> currentMonthPayments = Arrays.asList(new Payment(12, Category.ENTERTAINMENT));
-        List<Payment> prevMonthPayments = Arrays.asList(new Payment(10, Category.ENTERTAINMENT));
-
-        paymentFetcher.returnSpendings("user1", currentMonthPayments, prevMonthPayments);
+    void send_no_mail_for_no_current_month_spending() {
+        paymentFetcher.returnSpendings("user1", emptyList(), emptyList());
 
         SpendingNotifier spendingNotifier = new SpendingNotifier(paymentFetcher, mailSender);
         spendingNotifier.notifyUnusualSpendingFor("user1");
@@ -79,11 +54,48 @@ public class SpendingTest {
     }
 
     @Test
-    void send_a_mail_if_current_spending_is_present_while_last_is_zero() {
-        List<Payment> currentMonthPayments = Arrays.asList(new Payment(20, Category.ENTERTAINMENT));
-        List<Payment> prevMonthPayments = Arrays.asList();
+    void send_mail_for_no_last_month_spending() {
+        List<Payment> currentMonthPayments = List.of(new Payment(10, Category.ENTERTAINMENT));
+        List<Payment> lastMonthPayments = List.of();
+        paymentFetcher.returnSpendings("user1", currentMonthPayments, lastMonthPayments);
 
-        paymentFetcher.returnSpendings("user1", currentMonthPayments, prevMonthPayments);
+        SpendingNotifier spendingNotifier = new SpendingNotifier(paymentFetcher, mailSender);
+        spendingNotifier.notifyUnusualSpendingFor("user1");
+
+        mailSender.verifyMailSent("user1", "10", "entertainment");
+    }
+
+    @Test
+    void send_no_mail_if_current_spending_is_less_than_threshold() {
+        List<Payment> currentMonthPayments = List.of(new Payment(12, Category.ENTERTAINMENT));
+        List<Payment> lastMonthPayments = List.of(new Payment(10, Category.ENTERTAINMENT)); // threshold = 15
+
+        paymentFetcher.returnSpendings("user1", currentMonthPayments, lastMonthPayments);
+
+        SpendingNotifier spendingNotifier = new SpendingNotifier(paymentFetcher, mailSender);
+        spendingNotifier.notifyUnusualSpendingFor("user1");
+
+        mailSender.verifyNoMailSent();
+    }
+
+    @Test
+    void send_no_mail_if_current_spending_is_equals_to_threshold() {
+        List<Payment> currentMonthPayments = List.of(new Payment(15, Category.ENTERTAINMENT));
+        List<Payment> lastMonthPayments = List.of(new Payment(10, Category.ENTERTAINMENT));
+
+        paymentFetcher.returnSpendings("user1", currentMonthPayments, lastMonthPayments);
+
+        SpendingNotifier spendingNotifier = new SpendingNotifier(paymentFetcher, mailSender);
+        spendingNotifier.notifyUnusualSpendingFor("user1");
+
+        mailSender.verifyNoMailSent();
+    }
+
+    @Test
+    void send_mail_if_current_spending_is_greater_than_threshold() {
+        List<Payment> currentMonthPayments = List.of(new Payment(20, Category.ENTERTAINMENT));
+        List<Payment> lastMonthPayments = List.of(new Payment(10, Category.ENTERTAINMENT)); // threshold = 15
+        paymentFetcher.returnSpendings("user1", currentMonthPayments, lastMonthPayments);
 
         SpendingNotifier spendingNotifier = new SpendingNotifier(paymentFetcher, mailSender);
         spendingNotifier.notifyUnusualSpendingFor("user1");
@@ -92,4 +104,13 @@ public class SpendingTest {
     }
 
 
+//    @Test
+//    void compute_total_current_spending_before_comparing_with_the_threshold() {
+//        List<Payment> currentMonthPayments = List.of(
+//                new Payment(10, Category.ENTERTAINMENT),
+//                new Payment(10, Category.ENTERTAINMENT));
+//
+//        List<Payment> lastMonthPayments = List.of(
+//                new Payment(10, Category.ENTERTAINMENT));
+//    }
 }
