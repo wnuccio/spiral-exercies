@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -32,16 +33,35 @@ public class SpendingTest {
     void send_no_mail_for_no_spending() {
         MailSenderMock mailSender = new MailSenderMock();
 
-        List<Payment> currentMonthPayments = Collections.emptyList();
-        List<Payment> prevMonthPayments = Collections.emptyList();
+        PaymentFetcherStub paymentFetcher = new PaymentFetcherStub();
+        paymentFetcher.returnSpendings("user1", Collections.emptyList(), Collections.emptyList());
 
-        mailSender.returnSpendings("user1", currentMonthPayments, prevMonthPayments);
-
-        SpendingNotifier spendingNotifier = new SpendingNotifier(mailSender);
+        SpendingNotifier spendingNotifier = new SpendingNotifier(paymentFetcher, mailSender);
 
         spendingNotifier.notifyUnusualSpendingFor("user1");
 
         mailSender.verifyNoMailSent();
     }
 
+    @Test
+    void send_mail_on_unusual_spending_in_entertainment() {
+        MailSenderMock mailSender = new MailSenderMock();
+
+        List<Payment> currentMonthPayments = Arrays.asList(
+                new Payment(10, Category.ENTERTAINMENT)
+        );
+        List<Payment> prevMonthPayments = Arrays.asList(
+                new Payment(0, Category.ENTERTAINMENT)
+        );
+
+        PaymentFetcherStub paymentFetcher = new PaymentFetcherStub();
+        paymentFetcher.returnSpendings("user1", currentMonthPayments, prevMonthPayments);
+
+        SpendingNotifier spendingNotifier = new SpendingNotifier(paymentFetcher, mailSender);
+
+        spendingNotifier.notifyUnusualSpendingFor("user1");
+
+        mailSender.verifyMailSent("user1", "10", "entertainment");
+
+    }
 }
