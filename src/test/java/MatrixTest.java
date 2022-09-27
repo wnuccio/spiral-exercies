@@ -39,4 +39,15 @@ public class MatrixTest {
         });
         assertEquals(Arrays.asList("1", "23", "45", "67", "8"), matrix.diagonals());
     }
+
+    @Test
+    void one_col_matrix() {
+        Matrix matrix = new Matrix(new String[][]{
+                {"1"},
+                {"2"},
+                {"3"},
+                {"4"}
+        });
+        assertEquals(Arrays.asList("1", "2", "3", "4"), matrix.diagonals());
+    }
 }
