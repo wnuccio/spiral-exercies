@@ -13,7 +13,7 @@ class PaymentFetcherStub implements PaymentFetcher {
     @Override
     public Payments fetchPaymentsFor(String user) {
         if ( ! this.user.equals(user))
-            return Payments.noPayments();
+            return Payments.noPayment();
 
         return new Payments(currentMonthPayments, prevMonthPayments);
     }

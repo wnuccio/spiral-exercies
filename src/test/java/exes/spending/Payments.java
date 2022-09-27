@@ -19,13 +19,8 @@ class Payments {
         this(Collections.emptyList(), Collections.emptyList());
     }
 
-    public static Payments noPayments() {
+    public static Payments noPayment() {
         return new Payments();
-    }
-
-    boolean isCurrPaymentTooHighFor(Category category) {
-        Payment totalLastPayment = total(lastMonthPayment, category);
-        return totalCurrentPaymentFor(category).atLeast50percentMoreThan(totalLastPayment);
     }
 
     private Payment total(List<Payment> paymentList, Category category) {
@@ -41,9 +36,5 @@ class Payments {
                 .map(entry -> total(entry.getValue(), entry.getKey()))
                 .filter(payment -> payment.atLeast50percentMoreThan(total(lastMonthPayment, payment.category())))
                 .collect(Collectors.toList());
-    }
-
-    public Payment totalCurrentPaymentFor(Category category) {
-        return total(currentMonthPayment, category);
     }
 }

@@ -1,5 +1,7 @@
 package exes.spending;
 
+import java.util.List;
+
 public class SpendingNotifier {
     private final PaymentFetcherStub paymentFetcher;
     private final MailSender mailSender;
@@ -12,17 +14,9 @@ public class SpendingNotifier {
     public void notifyUnusualSpendingFor(String user) {
         Payments payments = paymentFetcher.fetchPaymentsFor(user);
 
-        Mail mail;
+        List<Payment> highPayments = payments.findUnusuallyHighPaymentsForEachCategory();
 
-//        for (exes.spending.Category category: exes.spending.Category.values()) {
-//            if (payments.isCurrPaymentTooHighFor(category)) {
-//                mail.add(payments.totalCurrentPaymentFor(category));
-//            }
-//        }
-
-        mail = new Mail(payments.findUnusuallyHighPaymentsForEachCategory());
-
-        if (mail.hasAtLeastOnePayment())
-            mailSender.sendMail(mail);
+        if (! highPayments.isEmpty())
+            mailSender.sendMail(new Mail(highPayments));
     }
 }
