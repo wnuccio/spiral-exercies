@@ -1,8 +1,9 @@
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
+
+import static java.util.Collections.emptyList;
 
 /*
 You work at a credit card company and as a value-add they want to start providing alerts to users
@@ -33,7 +34,7 @@ public class SpendingTest {
 
     @Test
     void send_no_mail_for_no_spending() {
-        paymentFetcher.returnSpendings("user1", Collections.emptyList(), Collections.emptyList());
+        paymentFetcher.returnSpendings("user1", emptyList(), emptyList());
 
         SpendingNotifier spendingNotifier = new SpendingNotifier(paymentFetcher, mailSender);
         spendingNotifier.notifyUnusualSpendingFor("user1");
@@ -46,11 +47,8 @@ public class SpendingTest {
         List<Payment> currentMonthPayments = Arrays.asList(
                 new Payment(10, Category.ENTERTAINMENT)
         );
-        List<Payment> prevMonthPayments = Arrays.asList(
-                new Payment(0, Category.ENTERTAINMENT)
-        );
 
-        paymentFetcher.returnSpendings("user1", currentMonthPayments, prevMonthPayments);
+        paymentFetcher.returnSpendings("user1", currentMonthPayments, emptyList());
 
         SpendingNotifier spendingNotifier = new SpendingNotifier(paymentFetcher, mailSender);
         spendingNotifier.notifyUnusualSpendingFor("user1");
@@ -64,7 +62,7 @@ public class SpendingTest {
                 new Payment(10, Category.ENTERTAINMENT)
         );
 
-        paymentFetcher.returnSpendings("user1", currentMonthPayments, Collections.emptyList());
+        paymentFetcher.returnSpendings("user1", currentMonthPayments, emptyList());
 
         SpendingNotifier spendingNotifier = new SpendingNotifier(paymentFetcher, mailSender);
         spendingNotifier.notifyUnusualSpendingFor("user2");
