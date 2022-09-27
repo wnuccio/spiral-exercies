@@ -1,3 +1,5 @@
+package exes.diagonals;
+
 import java.util.ArrayList;
 import java.util.List;
 
