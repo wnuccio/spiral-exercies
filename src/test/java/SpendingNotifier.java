@@ -1,6 +1,6 @@
 public class SpendingNotifier {
-    private PaymentFetcherStub paymentFetcher;
-    private MailSender mailSender;
+    private final PaymentFetcherStub paymentFetcher;
+    private final MailSender mailSender;
 
     public SpendingNotifier(PaymentFetcherStub paymentFetcher, MailSender mailSender) {
         this.paymentFetcher = paymentFetcher;
@@ -15,8 +15,7 @@ public class SpendingNotifier {
 
         if (payments.lastMonthPayment.isEmpty()) {
             Payment currPayment = payments.currentMonthPayment.get(0);
-            String price = String.valueOf(currPayment.price());
-            mailSender.sendMail(user, price, currPayment.category());
+            sendMailForPayment(user, currPayment);
             return;
         }
 
@@ -26,9 +25,13 @@ public class SpendingNotifier {
         int lastPrice = lastPayment.price();
         double lastPriceThreshold = lastPrice * 1.5;
         if (currPrice > lastPriceThreshold) {
-            String price = String.valueOf(currPayment.price());
-            mailSender.sendMail(user, price, currPayment.category());
+            sendMailForPayment(user, currPayment);
         }
+    }
+
+    private void sendMailForPayment(String user, Payment payment) {
+        String price = String.valueOf(payment.price());
+        mailSender.sendMail(user, price, payment.category());
 
     }
 }
