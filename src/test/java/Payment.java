@@ -1,8 +1,20 @@
 import java.util.List;
 
 class Payment {
-    public Payment(int price, Category category) {
+    private int price;
+    private Category category;
 
+    public Payment(int price, Category category) {
+        this.price = price;
+        this.category = category;
+    }
+
+    public int price() {
+        return price;
+    }
+
+    public Category category() {
+        return category;
     }
 }
 

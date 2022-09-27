@@ -28,16 +28,14 @@ Love,
 The Credit Card Company
  */
 public class SpendingTest {
+    MailSenderMock mailSender = new MailSenderMock();
+    PaymentFetcherStub paymentFetcher = new PaymentFetcherStub();
 
     @Test
     void send_no_mail_for_no_spending() {
-        MailSenderMock mailSender = new MailSenderMock();
-
-        PaymentFetcherStub paymentFetcher = new PaymentFetcherStub();
         paymentFetcher.returnSpendings("user1", Collections.emptyList(), Collections.emptyList());
 
         SpendingNotifier spendingNotifier = new SpendingNotifier(paymentFetcher, mailSender);
-
         spendingNotifier.notifyUnusualSpendingFor("user1");
 
         mailSender.verifyNoMailSent();
@@ -45,8 +43,6 @@ public class SpendingTest {
 
     @Test
     void send_mail_on_unusual_spending_in_entertainment() {
-        MailSenderMock mailSender = new MailSenderMock();
-
         List<Payment> currentMonthPayments = Arrays.asList(
                 new Payment(10, Category.ENTERTAINMENT)
         );
@@ -54,14 +50,11 @@ public class SpendingTest {
                 new Payment(0, Category.ENTERTAINMENT)
         );
 
-        PaymentFetcherStub paymentFetcher = new PaymentFetcherStub();
         paymentFetcher.returnSpendings("user1", currentMonthPayments, prevMonthPayments);
 
         SpendingNotifier spendingNotifier = new SpendingNotifier(paymentFetcher, mailSender);
-
         spendingNotifier.notifyUnusualSpendingFor("user1");
 
         mailSender.verifyMailSent("user1", "10", "entertainment");
-
     }
 }

@@ -11,6 +11,9 @@ public class SpendingNotifier {
         Payments payments = paymentFetcher.fetchPaymentsFor(user);
         if (payments.currentMonthPayment.isEmpty())
             return;
-        mailSender.sendMail(user, "10", Category.ENTERTAINMENT);
+
+        Payment payment = payments.currentMonthPayment.get(0);
+        String price = String.valueOf(payment.price());
+        mailSender.sendMail(user, price, payment.category());
     }
 }
