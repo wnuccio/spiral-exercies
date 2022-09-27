@@ -21,7 +21,6 @@ public class Mail {
     public String text() {
         return "Hello card user!\n\n" +
                 "We have detected unusually high spending on your card in these categories:\n\n" +
-//                youSpend(payments.get(0)) +
                 youSpendAll() +
                 "\nLove,\n\nThe Credit Card Company\n";
     }
@@ -36,7 +35,7 @@ public class Mail {
                 .collect(Collectors.joining("/n"));
     }
 
-    public boolean isNotEmpty() {
+    public boolean hasAtLeastOnePayment() {
         return ! payments.isEmpty();
     }
 }
