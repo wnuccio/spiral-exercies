@@ -16,15 +16,19 @@ public class Matrix {
 
     private String diagonal(int rowIndex, int colIndex) {
         String result = "";
-        boolean endOfDiagonal = rowIndex > maxRowIndex || colIndex < minColIndex;
+        boolean endOfDiagonal = isEndOfDiagonal(rowIndex, colIndex);
         while (! endOfDiagonal) {
             result += chars[rowIndex][colIndex];
             rowIndex++;
             colIndex--;
-            endOfDiagonal = rowIndex > maxRowIndex || colIndex < minColIndex;
+            endOfDiagonal = isEndOfDiagonal(rowIndex, colIndex);
         }
 
         return result;
+    }
+
+    private boolean isEndOfDiagonal(int rowIndex, int colIndex) {
+        return rowIndex > maxRowIndex || colIndex < minColIndex;
     }
 
     public List<String> diagonals() {
