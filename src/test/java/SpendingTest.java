@@ -151,4 +151,16 @@ public class SpendingTest {
 
         mailSender.verifyMailSent("user1", "20", "entertainment");
     }
+
+    @Test
+    void send_mail_specifying_the_right_category() {
+        List<Payment> currentMonthPayments = List.of(new Payment(20, Category.RESTAURANTS));
+        List<Payment> lastMonthPayments = List.of();
+        paymentFetcher.returnSpendings("user1", currentMonthPayments, lastMonthPayments);
+
+        SpendingNotifier spendingNotifier = new SpendingNotifier(paymentFetcher, mailSender);
+        spendingNotifier.notifyUnusualSpendingFor("user1");
+
+        mailSender.verifyMailSent("user1", "20", "restaurants");
+    }
 }

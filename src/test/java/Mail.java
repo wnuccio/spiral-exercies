@@ -23,11 +23,11 @@ public class Mail {
                 "\n" +
                 "We have detected unusually high spending on your card in these categories:\n" +
                 "\n" +
-                "* You spent $%sprice on entertainment\n" +
+                "* You spent $%s on %s\n" +
                 "\n" +
                 "Love,\n" +
                 "\n" +
                 "The Credit Card Company\n" +
-                "", price);
+                "", price, category.asName());
     }
 }
