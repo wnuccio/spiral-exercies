@@ -3,10 +3,10 @@ package exes.spending;
 import java.util.List;
 
 public class SpendingNotifier {
-    private final PaymentFetcherStub paymentFetcher;
+    private final PaymentFetcher paymentFetcher;
     private final MailSender mailSender;
 
-    public SpendingNotifier(PaymentFetcherStub paymentFetcher, MailSender mailSender) {
+    public SpendingNotifier(PaymentFetcher paymentFetcher, MailSender mailSender) {
         this.paymentFetcher = paymentFetcher;
         this.mailSender = mailSender;
     }
