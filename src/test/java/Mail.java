@@ -10,15 +10,15 @@ public class Mail {
     }
 
     public String text() {
-        return "Hello card user!\n" +
+        return String.format("Hello card user!\n" +
                 "\n" +
                 "We have detected unusually high spending on your card in these categories:\n" +
                 "\n" +
-                "* You spent $10 on entertainment\n" +
+                "* You spent $%sprice on entertainment\n" +
                 "\n" +
                 "Love,\n" +
                 "\n" +
                 "The Credit Card Company\n" +
-                "";
+                "", price);
     }
 }

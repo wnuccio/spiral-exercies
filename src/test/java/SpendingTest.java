@@ -44,10 +44,7 @@ public class SpendingTest {
 
     @Test
     void send_mail_on_unusual_spending_in_entertainment() {
-        List<Payment> currentMonthPayments = Arrays.asList(
-                new Payment(10, Category.ENTERTAINMENT)
-        );
-
+        List<Payment> currentMonthPayments = Arrays.asList(new Payment(10, Category.ENTERTAINMENT));
         paymentFetcher.returnSpendings("user1", currentMonthPayments, emptyList());
 
         SpendingNotifier spendingNotifier = new SpendingNotifier(paymentFetcher, mailSender);
@@ -58,9 +55,7 @@ public class SpendingTest {
 
     @Test
     void send_no_mail_for_an_unknown_user() {
-        List<Payment> currentMonthPayments = Arrays.asList(
-                new Payment(10, Category.ENTERTAINMENT)
-        );
+        List<Payment> currentMonthPayments = Arrays.asList(new Payment(10, Category.ENTERTAINMENT));
 
         paymentFetcher.returnSpendings("user1", currentMonthPayments, emptyList());
 
@@ -72,7 +67,7 @@ public class SpendingTest {
 
     @Test
     void send_no_mail_if_spending_in_entertainment_does_not_exceed_threshold() {
-        List<Payment> currentMonthPayments = Arrays.asList(new Payment(20, Category.ENTERTAINMENT));
+        List<Payment> currentMonthPayments = Arrays.asList(new Payment(12, Category.ENTERTAINMENT));
         List<Payment> prevMonthPayments = Arrays.asList(new Payment(10, Category.ENTERTAINMENT));
 
         paymentFetcher.returnSpendings("user1", currentMonthPayments, prevMonthPayments);
@@ -81,6 +76,19 @@ public class SpendingTest {
         spendingNotifier.notifyUnusualSpendingFor("user1");
 
         mailSender.verifyNoMailSent();
+    }
+
+    @Test
+    void send_a_mail_if_current_spending_is_present_while_last_is_zero() {
+        List<Payment> currentMonthPayments = Arrays.asList(new Payment(20, Category.ENTERTAINMENT));
+        List<Payment> prevMonthPayments = Arrays.asList();
+
+        paymentFetcher.returnSpendings("user1", currentMonthPayments, prevMonthPayments);
+
+        SpendingNotifier spendingNotifier = new SpendingNotifier(paymentFetcher, mailSender);
+        spendingNotifier.notifyUnusualSpendingFor("user1");
+
+        mailSender.verifyMailSent("user1", "20", "entertainment");
     }
 
 

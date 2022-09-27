@@ -12,11 +12,23 @@ public class SpendingNotifier {
         if (payments.currentMonthPayment.isEmpty())
             return;
 
-        Payment currPayment = payments.currentMonthPayment.get(0);
 
         if (payments.lastMonthPayment.isEmpty()) {
+            Payment currPayment = payments.currentMonthPayment.get(0);
+            String price = String.valueOf(currPayment.price());
+            mailSender.sendMail(user, price, currPayment.category());
+            return;
+        }
+
+        Payment currPayment = payments.currentMonthPayment.get(0);
+        Payment lastPayment = payments.lastMonthPayment.get(0);
+        int currPrice = currPayment.price();
+        int lastPrice = lastPayment.price();
+        double lastPriceThreshold = lastPrice * 1.5;
+        if (currPrice > lastPriceThreshold) {
             String price = String.valueOf(currPayment.price());
             mailSender.sendMail(user, price, currPayment.category());
         }
+
     }
 }
