@@ -12,8 +12,11 @@ public class SpendingNotifier {
         if (payments.currentMonthPayment.isEmpty())
             return;
 
-        Payment payment = payments.currentMonthPayment.get(0);
-        String price = String.valueOf(payment.price());
-        mailSender.sendMail(user, price, payment.category());
+        Payment currPayment = payments.currentMonthPayment.get(0);
+
+        if (payments.lastMonthPayment.isEmpty()) {
+            String price = String.valueOf(currPayment.price());
+            mailSender.sendMail(user, price, currPayment.category());
+        }
     }
 }

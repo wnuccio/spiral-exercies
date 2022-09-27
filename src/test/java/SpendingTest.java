@@ -69,4 +69,19 @@ public class SpendingTest {
 
         mailSender.verifyNoMailSent();
     }
+
+    @Test
+    void send_no_mail_if_spending_in_entertainment_does_not_exceed_threshold() {
+        List<Payment> currentMonthPayments = Arrays.asList(new Payment(20, Category.ENTERTAINMENT));
+        List<Payment> prevMonthPayments = Arrays.asList(new Payment(10, Category.ENTERTAINMENT));
+
+        paymentFetcher.returnSpendings("user1", currentMonthPayments, prevMonthPayments);
+
+        SpendingNotifier spendingNotifier = new SpendingNotifier(paymentFetcher, mailSender);
+        spendingNotifier.notifyUnusualSpendingFor("user1");
+
+        mailSender.verifyNoMailSent();
+    }
+
+
 }
