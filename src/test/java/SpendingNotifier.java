@@ -12,11 +12,13 @@ public class SpendingNotifier {
 
         Mail mail = new Mail();
 
-        for (Category category: Category.values()) {
-            if (payments.isCurrPaymentTooHighFor(category)) {
-                mail.add(payments.totalCurrentPaymentFor(category));
-            }
-        }
+//        for (Category category: Category.values()) {
+//            if (payments.isCurrPaymentTooHighFor(category)) {
+//                mail.add(payments.totalCurrentPaymentFor(category));
+//            }
+//        }
+
+        mail = new Mail(payments.findExceedings());
 
         if (mail.hasAtLeastOnePayment())
             mailSender.sendMail(mail);

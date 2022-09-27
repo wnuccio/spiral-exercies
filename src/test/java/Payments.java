@@ -1,5 +1,8 @@
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.groupingBy;
 
 class Payments {
     private final List<Payment> currentMonthPayment;
@@ -28,6 +31,15 @@ class Payments {
                 .filter(payment -> payment.category().equals(category))
                 .reduce(Payment::plus)
                 .orElse(new Payment(0, category));
+    }
+
+    public List<Payment> findExceedings() {
+        return currentMonthPayment.stream()
+                .collect(groupingBy(Payment::category))
+                .entrySet().stream()
+                .map(entry -> totalPayment(entry.getValue().stream().collect(Collectors.toList()), entry.getKey()))
+                .filter(payment -> payment.muchGreaterThan(totalPayment(lastMonthPayment, payment.category())))
+                .collect(Collectors.toList());
     }
 
     public Payment totalCurrentPaymentFor(Category category) {
