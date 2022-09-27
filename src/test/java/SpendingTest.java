@@ -119,4 +119,24 @@ public class SpendingTest {
 
         mailSender.verifyMailSent("user1", "20", "entertainment");
     }
+
+    @Test
+    void send_no_mail_if_total_current_spending_is_not_much_greater_than_total_last_spending() {
+        List<Payment> currentMonthPayments = List.of(
+                new Payment(10, Category.ENTERTAINMENT),
+                new Payment(10, Category.ENTERTAINMENT),
+                new Payment(10, Category.ENTERTAINMENT));
+
+        // total with threshold: 20 * 1,5 = 30
+        List<Payment> lastMonthPayments = List.of(
+                new Payment(10, Category.ENTERTAINMENT),
+                new Payment(10, Category.ENTERTAINMENT));
+
+        paymentFetcher.returnSpendings("user1", currentMonthPayments, lastMonthPayments);
+
+        SpendingNotifier spendingNotifier = new SpendingNotifier(paymentFetcher, mailSender);
+        spendingNotifier.notifyUnusualSpendingFor("user1");
+
+        mailSender.verifyNoMailSent();
+    }
 }
