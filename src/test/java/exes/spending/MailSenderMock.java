@@ -6,20 +6,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 class PaymentFetcherStub implements PaymentFetcher {
-    private String user = "";
     private List<Payment> currentMonthPayments = List.of();
     private List<Payment> prevMonthPayments = List.of();
 
     @Override
     public Payments fetchPaymentsFor(String user) {
-        if ( ! this.user.equals(user))
-            return Payments.noPayment();
-
         return new Payments(currentMonthPayments, prevMonthPayments);
     }
 
-    public void returnSpendings(String user, List<Payment> currentMonthPayments, List<Payment> prevMonthPayments) {
-        this.user = user;
+    public void returnSpendings(List<Payment> currentMonthPayments, List<Payment> prevMonthPayments) {
         this.currentMonthPayments = currentMonthPayments;
         this.prevMonthPayments = prevMonthPayments;
     }
