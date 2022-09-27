@@ -50,4 +50,15 @@ public class MatrixTest {
         });
         assertEquals(Arrays.asList("1", "2", "3", "4"), matrix.diagonals());
     }
+
+    @Test
+    void multi_size_matrix() {
+        Matrix matrix = new Matrix(new String[][]{
+                {"1", "A", "5", "7", "B", "N"},
+                {"2", "B", "6", "8", "K", "R"},
+                {"5", "Q", "N", "3", "B", "1"},
+        });
+
+        assertEquals(Arrays.asList("1", "A2", "5B5", "76Q", "B8N", "NK3", "RB", "1"), matrix.diagonals());
+    }
 }
