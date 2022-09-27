@@ -35,7 +35,7 @@ class MailSenderMock implements MailSender {
         assertNull(mail);
     }
 
-    public void verifyMailSent(String user, String price, String category) {
+    public void verifyMailSent(String price, String category) {
         assertNotNull(mail);
         assertEquals(true, mail.text().contains(price));
         assertEquals(true, mail.text().contains(category));

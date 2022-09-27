@@ -62,7 +62,7 @@ public class SpendingTest {
         SpendingNotifier spendingNotifier = new SpendingNotifier(paymentFetcher, mailSender);
         spendingNotifier.notifyUnusualSpendingFor("user1");
 
-        mailSender.verifyMailSent("user1", "10", "entertainment");
+        mailSender.verifyMailSent("10", "entertainment");
     }
 
     @Test
@@ -100,7 +100,7 @@ public class SpendingTest {
         SpendingNotifier spendingNotifier = new SpendingNotifier(paymentFetcher, mailSender);
         spendingNotifier.notifyUnusualSpendingFor("user1");
 
-        mailSender.verifyMailSent("user1", "20", "entertainment");
+        mailSender.verifyMailSent("20", "entertainment");
     }
 
     @Test
@@ -117,7 +117,7 @@ public class SpendingTest {
         SpendingNotifier spendingNotifier = new SpendingNotifier(paymentFetcher, mailSender);
         spendingNotifier.notifyUnusualSpendingFor("user1");
 
-        mailSender.verifyMailSent("user1", "20", "entertainment");
+        mailSender.verifyMailSent("20", "entertainment");
     }
 
     @Test
@@ -149,7 +149,7 @@ public class SpendingTest {
         SpendingNotifier spendingNotifier = new SpendingNotifier(paymentFetcher, mailSender);
         spendingNotifier.notifyUnusualSpendingFor("user1");
 
-        mailSender.verifyMailSent("user1", "20", "entertainment");
+        mailSender.verifyMailSent("20", "entertainment");
     }
 
     @Test
@@ -161,6 +161,22 @@ public class SpendingTest {
         SpendingNotifier spendingNotifier = new SpendingNotifier(paymentFetcher, mailSender);
         spendingNotifier.notifyUnusualSpendingFor("user1");
 
-        mailSender.verifyMailSent("user1", "20", "restaurants");
+        mailSender.verifyMailSent("20", "restaurants");
+    }
+
+    @Test
+    void send_mail_specifying_the_right_categories() {
+        List<Payment> currentMonthPayments = List.of(
+                new Payment(10, Category.ENTERTAINMENT),
+                new Payment(20, Category.RESTAURANTS)
+        );
+        List<Payment> lastMonthPayments = List.of();
+        paymentFetcher.returnSpendings("user1", currentMonthPayments, lastMonthPayments);
+
+        SpendingNotifier spendingNotifier = new SpendingNotifier(paymentFetcher, mailSender);
+        spendingNotifier.notifyUnusualSpendingFor("user1");
+
+        mailSender.verifyMailSent("10", "entertainment");
+        mailSender.verifyMailSent("20", "restaurants");
     }
 }

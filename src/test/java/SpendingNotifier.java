@@ -1,3 +1,5 @@
+import java.util.Collections;
+
 public class SpendingNotifier {
     private final PaymentFetcherStub paymentFetcher;
     private final MailSender mailSender;
@@ -12,21 +14,23 @@ public class SpendingNotifier {
 
 //        List<Payment> highPayments = new ArrayList<>();
 
+        Mail mail = new Mail();
         if (payments.isCurrPaymentTooHigh(Category.ENTERTAINMENT)) {
-//            highPayments.add(payments.totalCurrentPayment(Category.ENTERTAINMENT));
-            sendMailForPayment(user, payments.totalCurrentPayment(Category.ENTERTAINMENT));
+            mail.add(payments.totalCurrentPayment(Category.ENTERTAINMENT));
+//            sendMailForPayment(payments.totalCurrentPayment(Category.ENTERTAINMENT));
         }
 
         if (payments.isCurrPaymentTooHigh(Category.RESTAURANTS)) {
-//            highPayments.add(payments.totalCurrentPayment(Category.RESTAURANTS));
-            sendMailForPayment(user, payments.totalCurrentPayment(Category.RESTAURANTS));
+            mail.add(payments.totalCurrentPayment(Category.RESTAURANTS));
+//            sendMailForPayment(payments.totalCurrentPayment(Category.RESTAURANTS));
         }
+
+        if (mail.isNotEmpty())
+            mailSender.sendMail(mail);
     }
 
-    private void sendMailForPayment(String user, Payment payment) {
-        String price = String.valueOf(payment.price());
-        Mail mail = new Mail(user, price, payment.category());
-        mailSender.sendMail(mail);
+    private void sendMailForPayment(Payment payment) {
+        mailSender.sendMail(new Mail(Collections.singletonList(payment)));
 
     }
 }

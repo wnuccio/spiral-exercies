@@ -1,33 +1,42 @@
-public class Mail {
-    private final String user;
-    private final String price;
-    private final Category category;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
-    public Mail(String user, String price, Category category) {
-        this.user = user;
-        this.price = price;
-        this.category = category;
+public class Mail {
+    private final List<Payment> payments;
+
+    public Mail(List<Payment> payments) {
+        this.payments = new ArrayList<>();
+        this.payments.addAll(payments);
     }
 
-    @Override
-    public String toString() {
-        return "Mail{" +
-                "user='" + user + '\'' +
-                ", price='" + price + '\'' +
-                ", category=" + category +
-                '}';
+    public Mail() {
+        this(new ArrayList<>());
+    }
+
+    public void add(Payment payment) {
+        this.payments.add(payment);
     }
 
     public String text() {
-        return String.format("Hello card user!\n" +
-                "\n" +
-                "We have detected unusually high spending on your card in these categories:\n" +
-                "\n" +
-                "* You spent $%s on %s\n" +
-                "\n" +
-                "Love,\n" +
-                "\n" +
-                "The Credit Card Company\n" +
-                "", price, category.asName());
+        return "Hello card user!\n\n" +
+                "We have detected unusually high spending on your card in these categories:\n\n" +
+//                youSpend(payments.get(0)) +
+                youSpendAll() +
+                "\nLove,\n\nThe Credit Card Company\n";
+    }
+
+    private String youSpend(Payment payment) {
+        return String.format("* You spent $%s on %s", payment.price(), payment.category().asName());
+    }
+
+    private String youSpendAll() {
+        return payments.stream()
+                .map(this::youSpend)
+                .collect(Collectors.joining("/n"));
+    }
+
+    public boolean isNotEmpty() {
+        return ! payments.isEmpty();
     }
 }
