@@ -61,4 +61,11 @@ public class MatrixTest {
 
         assertEquals(Arrays.asList("1", "A2", "5B5", "76Q", "B8N", "NK3", "RB", "1"), matrix.diagonals());
     }
+
+    @Test
+    void empty_matrix() {
+        Matrix matrix = new Matrix(new String[][]{{}});
+
+        assertEquals(Collections.emptyList(), matrix.diagonals());
+    }
 }
