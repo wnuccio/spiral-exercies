@@ -14,6 +14,10 @@ public class Price {
         return new Price(this.value + other.value);
     }
 
+    public boolean atLeast50percentMoreThan(Price other) {
+        return (this.value > other.value * 1.5);
+    }
+
     public String asString() {
         return "$" + value;
     }

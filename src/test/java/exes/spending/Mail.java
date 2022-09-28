@@ -24,7 +24,7 @@ public class Mail {
     }
 
     private String youSpend(Payment payment) {
-        return String.format("* You spent $%s on %s", payment.price(), payment.category().asName());
+        return String.format("* You spent %s on %s", payment.price().asString(), payment.category().asName());
     }
 
     private String youSpendAll() {

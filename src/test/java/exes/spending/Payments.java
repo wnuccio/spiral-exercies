@@ -23,7 +23,6 @@ class Payments {
     public static Price totalPrice(List<Payment> paymentList) {
         return paymentList.stream()
                 .map(Payment::price)
-                .map(Price::new)
                 .reduce(new Price(0), Price::plus);
     }
 
