@@ -1,6 +1,5 @@
 package exes.spending;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,23 +14,10 @@ class Payments {
         this.lastMonthPayment = lastMonthPayment;
     }
 
-    public Payments() {
-        this(Collections.emptyList(), Collections.emptyList());
-    }
-
-    public static Payments noPayment() {
-        return new Payments();
-    }
-
     private static Payment total(List<Payment> paymentList, Category category) {
         return paymentList.stream()
                 .filter(payment -> payment.category().equals(category))
                 .reduce(new Payment(0, category), Payment::plus);
-    }
-
-    public static Payment total(List<Payment> paymentList) {
-        return paymentList.stream()
-                .reduce(new Payment(0, Category.ENTERTAINMENT), Payment::plus);
     }
 
     public static Price totalPrice(List<Payment> paymentList) {
