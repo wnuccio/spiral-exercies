@@ -23,10 +23,22 @@ class Payments {
         return new Payments();
     }
 
-    private Payment total(List<Payment> paymentList, Category category) {
+    private static Payment total(List<Payment> paymentList, Category category) {
         return paymentList.stream()
                 .filter(payment -> payment.category().equals(category))
                 .reduce(new Payment(0, category), Payment::plus);
+    }
+
+    public static Payment total(List<Payment> paymentList) {
+        return paymentList.stream()
+                .reduce(new Payment(0, Category.ENTERTAINMENT), Payment::plus);
+    }
+
+    public static Price totalPrice(List<Payment> paymentList) {
+        return paymentList.stream()
+                .map(Payment::price)
+                .map(Price::new)
+                .reduce(new Price(0), Price::plus);
     }
 
     public List<Payment> findUnusuallyHighPaymentsForEachCategory() {

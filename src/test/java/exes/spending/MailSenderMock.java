@@ -37,4 +37,8 @@ class MailSenderMock implements MailSender {
         assertTrue(mail.text().contains(price));
         assertTrue(mail.text().contains(category));
     }
+
+    public void verifyTotalInMailSubject(String total) {
+        assertTrue(mail.subject().contains(total));
+    }
 }

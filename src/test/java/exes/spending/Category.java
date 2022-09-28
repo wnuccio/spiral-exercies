@@ -1,7 +1,7 @@
 package exes.spending;
 
 public enum Category {
-    RESTAURANTS("restaurants"), ENTERTAINMENT("entertainment");
+    RESTAURANTS("restaurants"), ENTERTAINMENT("entertainment"), GOLF("golf");
 
     private final String name;
 

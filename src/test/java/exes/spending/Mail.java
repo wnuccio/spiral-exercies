@@ -12,12 +12,8 @@ public class Mail {
         this.payments.addAll(payments);
     }
 
-    public Mail() {
-        this(new ArrayList<>());
-    }
-
-    public void add(Payment payment) {
-        this.payments.add(payment);
+    public String subject() {
+        return String.format("Unusual spending of %s detected!", Payments.totalPrice(payments).asString());
     }
 
     public String text() {
@@ -35,9 +31,5 @@ public class Mail {
         return payments.stream()
                 .map(this::youSpend)
                 .collect(Collectors.joining("/n"));
-    }
-
-    public boolean hasAtLeastOnePayment() {
-        return ! payments.isEmpty();
     }
 }

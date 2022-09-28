@@ -169,4 +169,27 @@ public class SpendingTest {
         mailSender.verifyMailSent("10", "entertainment");
         mailSender.verifyMailSent("20", "restaurants");
     }
+
+    @Test
+    void send_mail_with_total_spending_in_subject() {
+        List<Payment> currentMonthPayments = List.of(
+                new Payment(10, Category.ENTERTAINMENT),
+                new Payment(20, Category.RESTAURANTS),
+                new Payment(30, Category.GOLF)
+        );
+        List<Payment> lastMonthPayments = List.of(
+                new Payment(10, Category.RESTAURANTS),
+                new Payment(10, Category.GOLF)
+        );
+
+        paymentFetcher.returnSpendings(currentMonthPayments, lastMonthPayments);
+
+        SpendingNotifier spendingNotifier = new SpendingNotifier(paymentFetcher, mailSender);
+        spendingNotifier.notifyUnusualSpendingFor("user1");
+
+        mailSender.verifyTotalInMailSubject("60");
+        mailSender.verifyMailSent("10", "entertainment");
+        mailSender.verifyMailSent("20", "restaurants");
+        mailSender.verifyMailSent("30", "golf");
+    }
 }
