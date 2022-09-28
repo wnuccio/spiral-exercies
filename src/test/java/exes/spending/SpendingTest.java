@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static exes.spending.Category.*;
 import static java.util.Collections.emptyList;
 
 /*
@@ -33,6 +34,10 @@ public class SpendingTest {
     MailSenderMock mailSender = new MailSenderMock();
     PaymentFetcherStub paymentFetcher = new PaymentFetcherStub();
 
+    private Payment price(int value, Category category) {
+        return new Payment(new Price(value), category);
+    }
+
     @Test
     void send_no_mail_for_no_current_month_spending() {
         paymentFetcher.returnSpendings(emptyList(), emptyList());
@@ -45,7 +50,7 @@ public class SpendingTest {
 
     @Test
     void send_mail_for_no_last_month_spending() {
-        List<Payment> currentMonthPayments = List.of(new Payment(10, Category.ENTERTAINMENT));
+        List<Payment> currentMonthPayments = List.of(price(10, ENTERTAINMENT));
         List<Payment> lastMonthPayments = List.of();
         paymentFetcher.returnSpendings(currentMonthPayments, lastMonthPayments);
 
@@ -57,8 +62,8 @@ public class SpendingTest {
 
     @Test
     void send_no_mail_if_current_spending_is_less_than_threshold() {
-        List<Payment> currentMonthPayments = List.of(new Payment(10, Category.ENTERTAINMENT));
-        List<Payment> lastMonthPayments = List.of(new Payment(10, Category.ENTERTAINMENT)); // threshold = 15
+        List<Payment> currentMonthPayments = List.of(price(10, ENTERTAINMENT));
+        List<Payment> lastMonthPayments = List.of(price(10, ENTERTAINMENT)); // threshold = 15
 
         paymentFetcher.returnSpendings(currentMonthPayments, lastMonthPayments);
 
@@ -70,8 +75,8 @@ public class SpendingTest {
 
     @Test
     void send_no_mail_if_current_spending_is_equals_to_threshold() {
-        List<Payment> currentMonthPayments = List.of(new Payment(15, Category.ENTERTAINMENT));
-        List<Payment> lastMonthPayments = List.of(new Payment(10, Category.ENTERTAINMENT));
+        List<Payment> currentMonthPayments = List.of(price(15, ENTERTAINMENT));
+        List<Payment> lastMonthPayments = List.of(price(10, ENTERTAINMENT));
 
         paymentFetcher.returnSpendings(currentMonthPayments, lastMonthPayments);
 
@@ -83,8 +88,8 @@ public class SpendingTest {
 
     @Test
     void send_mail_if_current_spending_is_greater_than_threshold() {
-        List<Payment> currentMonthPayments = List.of(new Payment(20, Category.ENTERTAINMENT));
-        List<Payment> lastMonthPayments = List.of(new Payment(10, Category.ENTERTAINMENT)); // threshold = 15
+        List<Payment> currentMonthPayments = List.of(price(20, ENTERTAINMENT));
+        List<Payment> lastMonthPayments = List.of(price(10, ENTERTAINMENT)); // threshold = 15
         paymentFetcher.returnSpendings(currentMonthPayments, lastMonthPayments);
 
         SpendingNotifier spendingNotifier = new SpendingNotifier(paymentFetcher, mailSender);
@@ -96,11 +101,11 @@ public class SpendingTest {
     @Test
     void send_mail_if_total_current_spending_is_greater_than_threshold() {
         List<Payment> currentMonthPayments = List.of(
-                new Payment(10, Category.ENTERTAINMENT),
-                new Payment(10, Category.ENTERTAINMENT));
+                price(10, ENTERTAINMENT),
+                price(10, ENTERTAINMENT));
 
         List<Payment> lastMonthPayments = List.of(
-                new Payment(10, Category.ENTERTAINMENT));
+                price(10, ENTERTAINMENT));
 
         paymentFetcher.returnSpendings(currentMonthPayments, lastMonthPayments);
 
@@ -113,14 +118,14 @@ public class SpendingTest {
     @Test
     void send_no_mail_if_total_current_spending_is_not_much_greater_than_total_last_spending() {
         List<Payment> currentMonthPayments = List.of(
-                new Payment(10, Category.ENTERTAINMENT),
-                new Payment(10, Category.ENTERTAINMENT),
-                new Payment(10, Category.ENTERTAINMENT));
+                price(10, ENTERTAINMENT),
+                price(10, ENTERTAINMENT),
+                price(10, ENTERTAINMENT));
 
         // total with threshold: 20 * 1,5 = 30
         List<Payment> lastMonthPayments = List.of(
-                new Payment(10, Category.ENTERTAINMENT),
-                new Payment(10, Category.ENTERTAINMENT));
+                price(10, ENTERTAINMENT),
+                price(10, ENTERTAINMENT));
 
         paymentFetcher.returnSpendings(currentMonthPayments, lastMonthPayments);
 
@@ -132,8 +137,8 @@ public class SpendingTest {
 
     @Test
     void send_mail_taking_into_account_categories() {
-        List<Payment> currentMonthPayments = List.of(new Payment(20, Category.ENTERTAINMENT));
-        List<Payment> lastMonthPayments = List.of(new Payment(10, Category.RESTAURANTS));
+        List<Payment> currentMonthPayments = List.of(price(20, ENTERTAINMENT));
+        List<Payment> lastMonthPayments = List.of(price(10, RESTAURANTS));
         paymentFetcher.returnSpendings(currentMonthPayments, lastMonthPayments);
 
         SpendingNotifier spendingNotifier = new SpendingNotifier(paymentFetcher, mailSender);
@@ -144,7 +149,7 @@ public class SpendingTest {
 
     @Test
     void send_mail_specifying_the_right_category() {
-        List<Payment> currentMonthPayments = List.of(new Payment(20, Category.RESTAURANTS));
+        List<Payment> currentMonthPayments = List.of(price(20, RESTAURANTS));
         List<Payment> lastMonthPayments = List.of();
         paymentFetcher.returnSpendings(currentMonthPayments, lastMonthPayments);
 
@@ -157,8 +162,8 @@ public class SpendingTest {
     @Test
     void send_mail_specifying_the_right_categories() {
         List<Payment> currentMonthPayments = List.of(
-                new Payment(10, Category.ENTERTAINMENT),
-                new Payment(20, Category.RESTAURANTS)
+                price(10, ENTERTAINMENT),
+                price(20, RESTAURANTS)
         );
         List<Payment> lastMonthPayments = List.of();
         paymentFetcher.returnSpendings(currentMonthPayments, lastMonthPayments);
@@ -173,13 +178,13 @@ public class SpendingTest {
     @Test
     void send_mail_with_total_spending_in_subject() {
         List<Payment> currentMonthPayments = List.of(
-                new Payment(10, Category.ENTERTAINMENT),
-                new Payment(20, Category.RESTAURANTS),
-                new Payment(30, Category.GOLF)
+                price(10, ENTERTAINMENT),
+                price(20, RESTAURANTS),
+                price(30, GOLF)
         );
         List<Payment> lastMonthPayments = List.of(
-                new Payment(10, Category.RESTAURANTS),
-                new Payment(10, Category.GOLF)
+                price(10, RESTAURANTS),
+                price(10, GOLF)
         );
 
         paymentFetcher.returnSpendings(currentMonthPayments, lastMonthPayments);

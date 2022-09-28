@@ -17,7 +17,7 @@ class Payments {
     private static Payment total(List<Payment> paymentList, Category category) {
         return paymentList.stream()
                 .filter(payment -> payment.category().equals(category))
-                .reduce(new Payment(0, category), Payment::plus);
+                .reduce(new Payment(new Price(0), category), Payment::plus);
     }
 
     public static Price totalPrice(List<Payment> paymentList) {

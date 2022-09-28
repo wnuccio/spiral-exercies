@@ -4,10 +4,6 @@ class Payment {
     private final Price price;
     private final Category category;
 
-    public Payment(int price, Category category) {
-        this(new Price(price), category);
-    }
-
     public Payment(Price price, Category category) {
         this.price = price;
         this.category = category;
